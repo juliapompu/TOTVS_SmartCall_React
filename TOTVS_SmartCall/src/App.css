@@ -1,86 +1,61 @@
-:root {
-  color-scheme: dark;
-  font-family: 'Inter', Arial, sans-serif;
+.header {
+  position: relative;
+  height: 90px;
+  background: #02163f;
+  display: flex;
+  align-items: center;
+  padding: 0 40px;
+  overflow: hidden;
 }
 
-body {
-  margin: 0;
-  min-height: 100vh;
-  background: #0b1735;
+/* Left shapes container */
+.shapes {
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 260px;
 }
 
-.App {
-  padding: 24px;
+/* Common shape styles */
+.shape {
+  position: absolute;
+  height: 100%;
+  width: 220px;
 }
 
-.page-header {
-  position: relative;
-  width: min(100%, 1100px);
-  height: 120px;
-  margin: 0 auto;
-  padding: 0 32px;
-  border-radius: 20px;
-  overflow: hidden;
-  background: #02173f;
+/* Top light shape */
+.shape-top {
+  background: #08c5c8;
+  clip-path: polygon(0 0, 100% 0, 80% 100%, 0 100%);
+  z-index: 2;
 }
 
-.page-header__shape {
-  position: absolute;
-  top: 0;
-  width: 320px;
-  height: 120px;
+/* Bottom darker shape */
+.shape-bottom {
+  background: #083b6c;
+  clip-path: polygon(0 0, 90% 0, 70% 100%, 0 100%);
+  top: 18px;
 }
 
-.page-header__shape--light {
-  left: 0;
-  background: #06BDC0;
-  clip-path: polygon(0 0, 100% 0, 78% 100%, 0% 100%);
+/* Navigation */
+.nav {
+  display: flex;
+  gap: 30px;
+  margin-left: 260px;
+  z-index: 3;
 }
 
-.page-header__shape--dark {
-  left: 190px;
-  background: #003c68;
-  clip-path: polygon(0 0, 100% 0, 100% 70%, 15% 100%, 0% 100%);
+.nav a {
+  color: white;
+  text-decoration: none;
+  font-size: 14px;
 }
 
-.page-header__content {
-  position: relative;
-  z-index: 1;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  height: 100%;
-}
-
-.page-header__nav {
-  display: flex;
-  align-items: center;
-  gap: 40px;
-  margin-left: 120px;
-}
-
-.page-header__nav a {
-  color: #ffffff;
-  text-decoration: none;
-  font-size: 0.95rem;
-  font-weight: 500;
-}
-
-.page-header__nav a span {
-  margin-left: 6px;
-  font-size: 0.72rem;
-  opacity: 0.75;
-}
-
-.page-header__logo {
-  width: 56px;
-  height: 56px;
-  border-radius: 50%;
-  background: linear-gradient(135deg, #06c9c7 0%, #003c68 100%);
-  display: grid;
-  place-items: center;
-  color: #ffffff;
-  font-weight: 800;
-  font-size: 1.1rem;
-  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.25);
+/* Logo */
+.logo {
+  margin-left: auto;
+  color: #08c5c8;
+  font-weight: bold;
+  z-index: 3;
 }
