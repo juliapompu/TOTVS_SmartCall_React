@@ -1,23 +1,22 @@
-import './App.css'
+import './App.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App() {
   return (
-    <main className="App">
-      <header className="page-header">
-        <div className="page-header__shape page-header__shape--light" />
-        <div className="page-header__shape page-header__shape--dark" />
+    <header className="header">
+      <div className="shapes">
+        <div className="shape shape-top"></div>
+        <div className="shape shape-bottom"></div>
+      </div>
 
-        <div className="page-header__content">
-          <nav className="page-header__nav">
-            <a href="#">Home</a>
-            <a href="#">Sobre nós <span>v</span></a>
-            <a href="#">Conheça a empresa <span>v</span></a>
-          </nav>
+      <nav className="nav">
+        <a href="./App.jsx">Home</a>
+        <a href="./Pages/Sobre.jsx">Sobre nós</a>
+        <a href="./Pages/Empresa.jsx">Conheça a empresa</a>
+      </nav>
 
-          <img className="page-header__logo" src="/assets/logo.png" alt="Logo" />
-        </div>
-      </header>
-    </main>
+      <div className="logo" src="assets/TOTVS_SmartCall_Logo.jpeg">LOGO</div>
+    </header>
   )
 }
 
