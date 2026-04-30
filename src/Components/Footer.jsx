@@ -1,27 +1,29 @@
 import logo from "../assets/TOTVS_SmartCall_Logo.jpeg";
-import '../App.css';
+import './Footer.css';
 
 export default function Footer() {
   return (
-    <footer className="footer">
-      <div className="shapes">
-        <div className="shape shape-top"></div>
-        <div className="shape shape-bottom"></div>
+    <footer className="footer-container">
+      <div className="footer-shapes">
+        <div className="footer-shape-top"></div>
+        <div className="footer-shape-bottom"></div>
       </div>
-      <div className="footer-text">
-        <h2 className="footer-text1">TOTVS SmartCall</h2>
-        <p className="footer-text2">Slogan</p>
+      <div className="footer-content">
+        <div className="text-center text-md-start">
+          <h2 className="h5 mb-1">TOTVS SmartCall</h2>
+          <p className="small mb-0">Slogan</p>
+        </div>
+        <div className="text-start small">
+          <h3 className="h6 mb-1">Contato:</h3>
+          <p className="mb-0">Telefone: (11) 5555-5555</p>
+          <p className="mb-0">Email: smartcall@totvs.com.br</p>
+          <p className="mb-0">Instagram: @TOTVS_SmartCall_oficial</p>
+          <p className="mb-0">Whatsapp: (11) 99999-9999</p>
+          <p className="mb-0">Facebook: smartcall_oficial</p>
+          <p className="mb-0">LinkedIn: C.T.R.L</p>
+        </div>
       </div>
-      <div className="footer-contato">
-        <h3 className="footer-contato-text1">Contato:</h3>
-        <p className="footer-contato-text2">Telefone: (11) 5555-5555</p>
-        <p className="footer-contato-text2">Email: smartcall@totvs.com.br</p>
-        <p className="footer-contato-text2">Instagram: @TOTVS_SmartCall_oficial</p>
-        <p className="footer-contato-text2">Whatsapp: (11) 99999-9999</p>
-        <p className="footer-contato-text2">Facebook: smartcall_oficial</p>
-        <p className="footer-contato-text2">LinkedIn: C.T.R.L</p>
-      </div>
-      <div className="logo2">
+      <div className="footer-logo">
         <img
           src={logo}
           alt="Logo da solução TOTVS SmartCall"

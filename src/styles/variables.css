@@ -1,0 +1,14 @@
+:root {
+  --primary-color: #021740;
+  --secondary-color: #084677;
+  --card-bg: #D9D9D9;
+  --body-bg: #f8f9fa;
+  --accent-color: #08c5c8;
+  --dark-blue: #083b6c;
+}
+
+body {
+  background-color: var(--body-bg);
+  margin: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
