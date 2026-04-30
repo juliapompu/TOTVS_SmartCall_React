@@ -1,0 +1,66 @@
+.header-container {
+  position: relative;
+  height: 120px;
+  background-color: var(--primary-color);
+  display: flex;
+  align-items: center;
+  padding: 0 40px;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.shapes {
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 180px;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.shape-top {
+  position: absolute;
+  background: var(--accent-color);
+  clip-path: polygon(0 0, 100% 0, 0 60%);
+  left: 0;
+  top: 0;
+  height: 120px;
+  width: 220px;
+  z-index: 2;
+}
+
+.shape-bottom {
+  position: absolute;
+  background: var(--dark-blue);
+  clip-path: polygon(0 20%, 100% 100%, 0 100%);
+  left: 0;
+  top: 20px;
+  height: 100px;
+  width: 220px;
+  z-index: 1;
+}
+
+.nav-links {
+  margin-left: 180px;
+  display: flex;
+  gap: 30px;
+  z-index: 3;
+}
+
+.nav-links a {
+  color: #fff !important;
+  text-decoration: none;
+  font-size: 16px;
+  transition: color 0.2s;
+}
+
+.nav-links a:hover {
+  color: var(--accent-color) !important;
+}
+
+.header-logo img {
+  height: 60px;
+  width: auto;
+  display: block;
+}
