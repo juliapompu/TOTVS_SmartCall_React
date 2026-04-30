@@ -5,7 +5,6 @@ import Sobre from "../Pages/Sobre";
 import Empresa from "../Pages/Empresa"; 
 
 export const router = createBrowserRouter([
-   
     {
         path:'/',
         element:<Layout/>,
