@@ -8,26 +8,34 @@ export default function Footer() {
         <div className="footer-shape-top"></div>
         <div className="footer-shape-bottom"></div>
       </div>
-      <div className="footer-content">
-        <div className="text-center text-md-start">
-          <h2 className="h5 mb-1">TOTVS SmartCall</h2>
-          <p className="small mb-0">Slogan</p>
+      
+      <div className="footer-left">
+        <div className="footer-links">
+          <a href="#">Termos de uso e privacidade</a>
+          <a href="#">Atendimento</a>
+          <a href="#">Central de Denúncias</a>
         </div>
-        <div className="text-start small">
-          <h3 className="h6 mb-1">Contato:</h3>
-          <p className="mb-0">Telefone: (11) 5555-5555</p>
-          <p className="mb-0">Email: smartcall@totvs.com.br</p>
-          <p className="mb-0">Instagram: @TOTVS_SmartCall_oficial</p>
-          <p className="mb-0">Whatsapp: (11) 99999-9999</p>
-          <p className="mb-0">Facebook: smartcall_oficial</p>
-          <p className="mb-0">LinkedIn: C.T.R.L</p>
+        <div className="footer-socials">
+          <a href="#"><img src="https://cdn-icons-png.flaticon.com/512/733/733547.png" alt="Facebook" /></a>
+          <a href="#"><img src="https://cdn-icons-png.flaticon.com/512/3536/3536505.png" alt="LinkedIn" /></a>
+          <a href="#"><img src="https://cdn-icons-png.flaticon.com/512/733/733579.png" alt="Twitter" /></a>
+          <a href="#"><img src="https://cdn-icons-png.flaticon.com/512/2111/2111463.png" alt="Instagram" /></a>
         </div>
       </div>
-      <div className="footer-logo">
-        <img
-          src={logo}
-          alt="Logo da solução TOTVS SmartCall"
-        />
+
+      <div className="footer-right">
+        <div className="footer-brand">
+          <div className="text-end">
+            <h2 className="h5 mb-0">TOTVS SmartCall</h2>
+            <p className="small mb-0">Slogan</p>
+          </div>
+          <div className="footer-logo">
+            <img
+              src={logo}
+              alt="Logo da solução TOTVS SmartCall"
+            />
+          </div>
+        </div>
       </div>
     </footer>
   );
