@@ -1,3 +1,4 @@
+
 .footer-container {
   position: relative;
   width: 100%;
@@ -9,6 +10,7 @@
   padding: 20px 40px;
   z-index: 1;
 }
+
 
 .footer-shapes {
   position: absolute;
@@ -22,6 +24,7 @@
   align-items: center;
   justify-content: flex-end;
 }
+
 
 .footer-shape-top {
   position: absolute;
