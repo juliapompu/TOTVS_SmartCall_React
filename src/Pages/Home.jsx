@@ -1,4 +1,5 @@
 import MeetingCard from '../components/MeetingCard';
+import Body from '../Components/Body';
 
 const MOCKED_MEETINGS = [
   {
@@ -50,17 +51,19 @@ const MOCKED_MEETINGS = [
 
 export default function Home() {
   return (
-    <div className="container pb-5">
-      <h1 className="mb-3 text-center h4">Minhas Reuniões</h1>
-      <div className="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-5 g-3">
-        {MOCKED_MEETINGS.map(meeting => (
-          <div key={meeting.id} className="col">
-            <MeetingCard meeting={meeting} />
-          </div>
-        ))}
+    <>
+      <div className="container pb-5">
+        <h1 className="mb-3 text-center h4">Minhas Reuniões</h1>
+        <div className="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-5 g-3">
+          {MOCKED_MEETINGS.map(meeting => (
+            <div key={meeting.id} className="col">
+              <MeetingCard meeting={meeting} />
+            </div>
+          ))}
+        </div>
       </div>
-
-      
-    </div>
+      <Body />
+    </>
+    
   );
 }
