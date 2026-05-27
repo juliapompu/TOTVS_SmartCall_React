@@ -1,22 +1,35 @@
 .top-list-card {
+  position: relative;
   aspect-ratio: 1 / 1;
   display: flex;
   flex-direction: column;
-  padding: 2rem;
-  border-radius: 15px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-  transition: transform 0.3s ease;
+  padding: 2rem 1.5rem 1.5rem 1.5rem;
+  border-radius: 18px;
+  background: #0a2342; /* azul escuro */
+  color: #fff;
+  overflow: hidden;
+  box-shadow: none;
+  transition: none;
 }
 
-.top-list-card:hover {
-  transform: translateY(-5px);
+.top-list-card .card-wave {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 70px;
+  z-index: 1;
 }
 
 .top-list-card h3 {
-  font-size: 1.5rem;
+  font-size: 1.1rem;
   font-weight: bold;
   margin-bottom: 1.5rem;
-  text-align: center;
+  text-align: left;
+  margin-top: 1.5rem;
+  position: relative;
+  z-index: 2;
+  letter-spacing: 1px;
 }
 
 .top-list {
@@ -25,7 +38,9 @@
   margin: 0;
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 8px;
+  position: relative;
+  z-index: 2;
 }
 
 .top-list-item {
@@ -33,10 +48,24 @@
   align-items: center;
   gap: 10px;
   font-weight: 500;
+  font-size: 1rem;
 }
 
 .top-list-rank {
   font-weight: bold;
-  opacity: 0.7;
+  opacity: 0.8;
   width: 20px;
+}
+.card-wave-bottom {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 70px;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.top-list-card:hover {
+  transform: translateY(-5px);
 }
