@@ -85,22 +85,18 @@ export default function Home() {
           <TopListCard 
             title="Top 5 Clientes" 
             items={topClients} 
-            bgColor="#FFFFFF" 
           />
         </div>
         <div className="col-md-4">
           <TopListCard 
             title="Top 5 Produtos" 
             items={topProducts} 
-            bgColor="#D9D9D9" 
           />
         </div>
         <div className="col-md-4">
           <TopListCard 
             title="Top 5 Funcionários" 
             items={topEmployees} 
-            bgColor="#094A73" 
-            textColor="white"
           />
         </div>
       </div>
