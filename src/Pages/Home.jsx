@@ -65,6 +65,9 @@ export default function Home() {
 
   return (
     <div className="container pb-5">
+      {/* Carrossel de Notícias existente (Componente Body) */}
+      <Body />
+
       <h1 className="mb-3 text-center h4">Minhas Reuniões</h1>
       
       {/* Grid de Reuniões */}
@@ -75,9 +78,6 @@ export default function Home() {
           </div>
         ))}
       </div>
-
-      {/* Carrossel de Notícias existente (Componente Body) */}
-      <Body />
 
       {/* Cards de Top 5 */}
       <div className="row g-4 mt-5 mb-5">
