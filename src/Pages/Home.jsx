@@ -4,6 +4,7 @@ import TopListCard from '../components/TopListCard';
 import Body from '../components/Body';
 import CompanyCard from '../components/CompanyCard';
 import CompanyDetailCard from '../components/CompanyDetailCard';
+import '../styles/Home.css';
 
 // Importação das logos locais
 import itauLogo from '../assets/itau-logo.jpg';
@@ -68,7 +69,7 @@ export default function Home() {
       {/* Carrossel de Notícias existente (Componente Body) */}
       <Body />
 
-      <h1 className="mb-3 text-center h4">Minhas Reuniões</h1>
+      
       
       {/* Grid de Reuniões */}
       <div className="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-5 g-3 mb-5">
@@ -78,7 +79,11 @@ export default function Home() {
           </div>
         ))}
       </div>
-
+      <div className="text-center mb-5">
+        <button className='botao-trascricao' onClick={}>
+          <h4>Coloque sua transcrição aqui! </h4>
+        </button>
+      </div>
       {/* Cards de Top 5 */}
       <div className="row g-4 mt-5 mb-5">
         <div className="col-md-4">
