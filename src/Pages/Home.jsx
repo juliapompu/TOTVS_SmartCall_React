@@ -4,6 +4,7 @@ import TopListCard from '../components/TopListCard';
 import Body from '../components/Body';
 import CompanyCard from '../components/CompanyCard';
 import CompanyDetailCard from '../components/CompanyDetailCard';
+import JsonUploadDetail from '../components/JsonUploadDetail';
 import '../styles/Home.css';
 
 // Importação das logos locais
@@ -28,6 +29,7 @@ export default function Home() {
   const [topEmployees, setTopEmployees] = useState([]);
   const [companies, setCompanies] = useState([]);
   const [selectedCompany, setSelectedCompany] = useState(null);
+  const [showUpload, setShowUpload] = useState(false);
 
   useEffect(() => {
     // Simulação de chamada de API para carregar os dados iniciais (mocados)
@@ -80,7 +82,7 @@ export default function Home() {
         ))}
       </div>
       <div className="text-center mb-5">
-        <button className='botao-trascricao' onClick={}>
+        <button className='botao-trascricao' onClick={() => setShowUpload(true)}>
           <h4>Coloque sua transcrição aqui! </h4>
         </button>
       </div>
@@ -120,6 +122,16 @@ export default function Home() {
           ))}
         </div>
       </div>
+      {showUpload && (
+        <JsonUploadDetail
+          onClose={() => setShowUpload(false)}
+          onUpload={(data) => {
+            console.log('JSON recebido:', data);
+            setShowUpload(false);
+          }}
+        />
+      )}
+
       {selectedCompany && (
         <CompanyDetailCard company={selectedCompany} onClose={() => setSelectedCompany(null)} />
       )}
