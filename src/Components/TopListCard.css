@@ -1,15 +1,16 @@
 .top-list-card {
   position: relative;
-  aspect-ratio: 1 / 1;
+  width: 100%;
   display: flex;
   flex-direction: column;
-  padding: 2rem 1.5rem 1.5rem 1.5rem;
+  padding: 2rem 1.5rem 2.25rem 1.5rem;
   border-radius: 18px;
   background: #0a2342; /* azul escuro */
   color: #fff;
   overflow: hidden;
   box-shadow: none;
   transition: none;
+  flex: 1;
 }
 
 .top-list-card .card-wave {
@@ -56,6 +57,7 @@
   opacity: 0.8;
   width: 20px;
 }
+
 .card-wave-bottom {
   position: absolute;
   bottom: 0;
@@ -68,4 +70,20 @@
 
 .top-list-card:hover {
   transform: translateY(-5px);
+}
+
+@media (max-width: 767px) {
+  .top-list-card {
+    padding: 1.5rem 1.25rem 80px 1.25rem;
+  }
+
+  .top-list-card h3 {
+    font-size: 1rem;
+    margin-top: 1rem;
+    margin-bottom: 1.25rem;
+  }
+
+  .top-list-item {
+    font-size: 0.95rem;
+  }
 }

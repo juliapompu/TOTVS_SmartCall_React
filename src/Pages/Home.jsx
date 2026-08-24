@@ -43,21 +43,21 @@ export default function Home() {
 
       {/* Cards de Top 5 - Posicionados embaixo do carrossel existente */}
       <div className="row g-4 mt-5">
-        <div className="col-md-4">
+        <div className="col-12 col-md-4 d-flex">
           <TopListCard 
             title="Top 5 Clientes" 
             items={topClients} 
             bgColor="#FFFFFF" 
           />
         </div>
-        <div className="col-md-4">
+        <div className="col-12 col-md-4 d-flex">
           <TopListCard 
             title="Top 5 Produtos" 
             items={topProducts} 
             bgColor="#D9D9D9" 
           />
         </div>
-        <div className="col-md-4">
+        <div className="col-12 col-md-4 d-flex">
           <TopListCard 
             title="Top 5 Funcionários" 
             items={topEmployees} 
