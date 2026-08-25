@@ -1,0 +1,32 @@
+.botao-trascricao {
+    background-color: #084677;
+    color: white;
+    border-radius: 30px;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    width: 90%;
+    max-width: 800px;
+    min-height: 100px;
+    margin: 0 auto;
+    transition: transform 180ms ease, box-shadow 180ms ease, background-color 180ms ease;
+    transform: translateZ(0);
+    box-shadow: 0 2px 6px rgba(0,0,0,0.12);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.botao-trascricao h4{
+    margin: 0;
+    width: auto;
+    height: auto;
+    display: block;
+}
+
+.botao-trascricao:hover {
+    background-color: #06325a;
+    transform: translateY(-6px) scale(1.02);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.18);
+}
