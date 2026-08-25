@@ -73,37 +73,30 @@ export default function Home() {
 
       
       
-      {/* Grid de Reuniões */}
-      <div className="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-5 g-3 mb-5">
-        {meetings.map(meeting => (
-          <div key={meeting.id} className="col">
-            <MeetingCard meeting={meeting} />
-          </div>
-        ))}
-      </div>
-      <div className="text-center mb-5">
-        <button className='botao-trascricao' onClick={() => setShowUpload(true)}>
-          <h4>Coloque sua transcrição aqui! </h4>
-        </button>
-      </div>
       {/* Cards de Top 5 */}
-      <div className="row g-4 mt-5 mb-5">
-        <div className="col-md-4">
+      <div className="row g-5 mt-4 mb-5">
+        <div className="col-12 col-md-4">
           <TopListCard 
             title="Top 5 Clientes" 
             items={topClients} 
+            alignTitle="left"
+            variant="standard"
           />
         </div>
-        <div className="col-md-4">
+        <div className="col-12 col-md-4">
           <TopListCard 
             title="Top 5 Produtos" 
             items={topProducts} 
+            alignTitle="right"
+            variant="middle"
           />
         </div>
-        <div className="col-md-4">
+        <div className="col-12 col-md-4">
           <TopListCard 
             title="Top 5 Funcionários" 
             items={topEmployees} 
+            alignTitle="left"
+            variant="standard"
           />
         </div>
       </div>
