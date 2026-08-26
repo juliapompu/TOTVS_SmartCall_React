@@ -21,6 +21,20 @@
     object-fit: cover;
 }
 
+.news-image-link {
+    display: block;
+    cursor: pointer;
+}
+
+.news-image-link img {
+    transition: filter 180ms ease, transform 180ms ease;
+}
+
+.news-image-link:hover img {
+    filter: brightness(0.88);
+    transform: scale(1.01);
+}
+
 .carousel-caption {
     background: rgba(0, 0, 0, 0.40);
     padding: 1rem;
