@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import MeetingCard from '../components/MeetingCard';
-import TopListCard from '../components/TopListCard';
-import Body from '../components/Body';
-import CompanyCard from '../components/CompanyCard';
-import CompanyDetailCard from '../components/CompanyDetailCard';
-import JsonUploadDetail from '../components/JsonUploadDetail';
+import MeetingCard from '../Components/MeetingCard';
+import TopListCard from '../Components/TopListCard';
+import Body from '../Components/Body';
+import CompanyCard from '../Components/CompanyCard';
+import CompanyDetailCard from '../Components/CompanyDetailCard';
+import JsonUploadDetail from '../Components/JsonUploadDetail';
 import '../styles/Home.css';
 
 // Importação das logos locais
@@ -71,8 +71,12 @@ export default function Home() {
       {/* Carrossel de Notícias existente (Componente Body) */}
       <Body />
 
-      
-      
+      <div className="text-center mb-5">
+        <button className="botao-trascricao" onClick={() => setShowUpload(true)}>
+          <h4>Coloque sua transcrição aqui!</h4>
+        </button>
+      </div>
+
       {/* Cards de Top 5 */}
       <div className="row g-5 mt-4 mb-5">
         <div className="col-12 col-md-4">
