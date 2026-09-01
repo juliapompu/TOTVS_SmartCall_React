@@ -81,12 +81,6 @@ export default function Home() {
       </div>
       <div className="text-center mb-5">
         <button className='botao-trascricao' onClick={() => setShowUpload(true)}>
-          <h4>Coloque sua transcrição aqui! </h4>
-        </button>
-      </div>
-
-      <div className="text-center mb-5">
-        <button className="botao-trascricao" onClick={() => setShowUpload(true)}>
           <h4>Coloque sua transcrição aqui!</h4>
         </button>
       </div>
@@ -94,25 +88,25 @@ export default function Home() {
       {/* Cards de Top 5 */}
       <div className="row g-5 mt-4 mb-5">
         <div className="col-12 col-md-4">
-          <TopListCard 
-            title="Top 5 Clientes" 
-            items={topClients} 
+          <TopListCard
+            title="Top 5 Clientes"
+            items={topClients}
             alignTitle="left"
             variant="standard"
           />
         </div>
         <div className="col-12 col-md-4">
-          <TopListCard 
-            title="Top 5 Produtos" 
-            items={topProducts} 
+          <TopListCard
+            title="Top 5 Produtos"
+            items={topProducts}
             alignTitle="right"
             variant="middle"
           />
         </div>
         <div className="col-12 col-md-4">
-          <TopListCard 
-            title="Top 5 Funcionários" 
-            items={topEmployees} 
+          <TopListCard
+            title="Top 5 Funcionários"
+            items={topEmployees}
             alignTitle="left"
             variant="standard"
           />
@@ -125,9 +119,9 @@ export default function Home() {
         <div className="row g-4">
           {companies.map(company => (
             <div key={company.id} className="col-12 col-sm-6 col-md-3">
-              <CompanyCard 
-                company={company} 
-                onClick={handleCompanyClick} 
+              <CompanyCard
+                company={company}
+                onClick={handleCompanyClick}
               />
             </div>
           ))}
