@@ -1,28 +1,49 @@
 import { Link, useParams } from 'react-router-dom';
 import '../styles/Noticia.css';
+import Noticia1 from '../assets/Noticia1.jpg';
+import Noticia2 from '../assets/Noticia2.jpg';
+import Noticia3 from '../assets/Noticia3.jpg';
 
 const noticias = {
   1: {
     title: 'TOTVS e ESPM lançam pós-graduação em marketing com foco em IA e receita',
     summary: 'A parceria reforça a formação de profissionais para o futuro do mercado digital e tecnológico.',
+    image: Noticia1,
     paragraphs: [
-      'A TOTVS, por meio de sua operação RD Station, e a Escola Superior de Propaganda e Marketing (ESPM) anunciaram parceria para o lançamento de cursos de pós-graduação, com desenvolvimento conjunto da grade e dos conteúdos, voltados à formação de profissionais de marketing, negócios e tecnologia.',
-      'A iniciativa marca um movimento para responder às transformações do setor, com foco em temas como inteligência artificial, geração de receita, experiência do cliente e crescimento sustentável. A parceria aproxima o conhecimento de mercado da formação acadêmica, com conteúdos voltados à inovação, ao marketing e às novas tecnologias.',
-      'Entre os programas a serem desenvolvidos está um foco em estratégias digitais, análise de dados, automação, liderança e construção de negócios com previsibilidade e escala. Ao unir duas referências do setor, a proposta cria uma base sólida para a próxima geração de executivos e especialistas.',
-      'Em um mercado em constante transformação, a parceria reforça a importância de alinhar educação, tecnologia e estratégia para formar profissionais mais preparados para atender às demandas do futuro.',
+      'A Totvs, por meio da RD Station, firmou parceria com a ESPM para o lançamento de programas de pós-graduação voltados às novas demandas do mercado de marketing.',
+      'A iniciativa prevê o desenvolvimento conjunto de grade e conteúdos, com foco em temas como inteligência artificial, geração de receita, experiência do cliente e crescimento.',
+      'Ao todo, serão seis cursos, com formatos EAD, híbrido e presencial, direcionados a diferentes perfis — de empreendedores a executivos C-level.',
+      'Entre os programas estão formações em Revenue Marketing, Next-Gen Agency, Inteligência Artificial aplicada ao marketing e um Global CMO Program, com aulas em São Paulo. Parte dos cursos será realizada em Florianópolis, incluindo disciplinas na sede da RD Station.',
+      'Segundo Frederike Mette, diretora acadêmica de pós-graduação da ESPM, a proposta responde à transformação do setor. “O mercado demanda profissionais que consigam integrar estratégia, execução e tecnologia de forma consistente”, afirma.',
+      'Para Luís Lourenço, diretor de novos negócios da RD Station, o movimento amplia o papel da companhia na formação do mercado. “Passamos a integrar a construção de programas acadêmicos, aproximando ainda mais teoria e prática”, diz.',
+      'Profissionais da RD Station e da Totvs atuarão como professores e palestrantes, levando experiência operacional para os cursos.',
+      'O lançamento oficial da parceria ocorre em 5 de maio, durante o Marketing Day da RD Station.'
     ],
   },
   2: {
     title: 'BTG e TOTVS: uma nova movimentação no mercado',
     summary: 'Confira os detalhes da movimentação envolvendo as empresas.',
-    paragraphs: [
-      'A operação reforça o interesse do mercado por empresas brasileiras de tecnologia e movimenta o setor de soluções digitais para negócios.',
-      'A iniciativa também abre espaço para discussões sobre integração de dados, eficiência operacional e novas estratégias de crescimento digital.',
+    image: Noticia2,
+    paragraphs: ['Maio começou e, como de costume, o BTG Pactual já atualizou a 10SIM, carteira mensal de ações recomendadas pelo banco.',
+    'Para este mês, a Totvs (TOTS3) é a novidade, chegando para ocupar o lugar do Itaú (ITUB4), que deixa o portfólio de maneira estratégica.',
+    'Com a mudança, o BTG reduz sua exposição aos grandes bancos tradicionais.',
+    'Mas o que está por trás da escolha da Totvs (TOTS3) para compor a seleção do banco neste mês?',
+    'Não é por acaso que a empresa de softwares foi selecionada pelo BTG Pactual.',
+    'Segundo os analistas, as ações da Totvs caíram mais de 30% em relação ao pico registrado em janeiro, em meio aos temores de disrupção causada pela inteligência artificial, que desencadearam o movimento apelidado de “SaaSpocalypse”.',
+    'Esse cenário levou a uma onda generalizada de vendas no setor de software, pressionando os papéis da companhia apesar do desempenho operacional consistentemente sólido.',
+    'Após isso, a companhia passou a ser negociada a cerca de 15x P/L estimado para 2027.',
+    'Um nível que, historicamente, coincide com os menores valuations em períodos de forte estresse, mesmo com resultados operacionais sólidos.',
+    'Diante disso, a expectativa dos analistas é de crescimento relevante de receita recorrente e melhora contínua da rentabilidade, impulsionados pela própria operação.',
+    'Com as ações negociando a níveis atrativos, a Totvs lançou em fevereiro um programa de recompra de 20 milhões de ações.',
+    ' A companhia chegou a recomprar cerca de 1% do valor de mercado em março, a maior proporção entre as empresas da B3.',
+    'A atividade foi interrompida pelo período de silêncio antes da divulgação de resultados. Porém, na visão dos analistas do banco, deve ser retomada e breve.',    '“Embora reconheçamos os riscos da IA, acreditamos que os desenvolvedores de ERP estão mais protegidos, dada à forte relação que mantêm com seus clientes.',
+    'Agora você já sabe por que a Totvs é considerada uma ação promissora para este mês, mas ela não é a única recomendação do banco para investir agora.',
     ],
   },
   3: {
     title: 'Prêmio TOTVS Brasil',
     summary: 'Conheça o evento que celebra inovação e resultados.',
+    image: Noticia3,
     paragraphs: [
       'O Prêmio TOTVS Brasil reconhece empresas e profissionais que transformam seus negócios por meio da tecnologia, da colaboração e da inovação.',
       'A premiação destaca histórias de impacto, eficiência e uso estratégico de soluções digitais em diferentes setores da economia.',
@@ -36,14 +57,6 @@ export default function Noticia() {
 
   return (
     <div className="news-layout-shell">
-      <header className="news-shell-header">
-        <div className="news-shell-brand">PagNoticias</div>
-        <div className="news-shell-actions" aria-label="Ações">
-          <span className="news-shell-icon">◌</span>
-          <span className="news-shell-icon news-shell-icon--dark">◍</span>
-        </div>
-      </header>
-
       <main className="news-shell-body">
         <article className="news-article-card">
           <h1>{noticia.title}</h1>
@@ -55,29 +68,18 @@ export default function Noticia() {
               ))}
             </div>
 
-            <div className="news-visual" aria-label="Imagem ilustrativa da notícia">
-              <div className="news-visual-figure" />
-              <div className="news-visual-badge">ESPM</div>
-            </div>
+           <div className="news-visual">
+              <img
+                src={noticia.image}
+                alt={noticia.title}
+                className="news-visual-image"
+              />
+          </div>
           </div>
         </article>
       </main>
 
-      <footer className="news-shell-footer">
-        <div className="news-shell-footer-copy">
-          <span>Tempo de uso e privacidade</span>
-          <strong>Termos de uso</strong>
-        </div>
-        <div className="news-shell-footer-copy">
-          <span>Atualizado em</span>
-          <strong>10/05/2026</strong>
-        </div>
-        <div className="news-shell-footer-copy">
-          <span>Portal</span>
-          <strong>TOTVS SmartCall</strong>
-        </div>
-        <div className="news-shell-brand-mark">S</div>
-      </footer>
+    
     </div>
   );
 }

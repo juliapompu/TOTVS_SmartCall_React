@@ -2,7 +2,7 @@
   width: 100%;
   min-height: calc(100vh - 40px);
   margin: 0;
-  background: #f3f3f3;
+
   border-radius: 0;
   overflow: hidden;
   box-shadow: none;
@@ -14,7 +14,7 @@
   justify-content: space-between;
   padding: 10px 18px;
   background: linear-gradient(90deg, #0d3657 0%, #0d4d7c 100%);
-  color: #fff;
+ 
 }
 
 .news-shell-brand {
@@ -37,7 +37,7 @@
   height: 18px;
   border-radius: 50%;
   background: rgba(255, 255, 255, 0.14);
-  color: #fff;
+ 
   font-size: 0.65rem;
 }
 
@@ -47,19 +47,19 @@
 
 .news-shell-nav {
   padding: 8px 18px 0;
-  background: #f3f3f3;
+
   color: #2c4d69;
   font-size: 0.7rem;
   font-weight: 600;
 }
 
 .news-shell-body {
-  background: #f3f3f3;
+
   padding: 0;
 }
 
 .news-article-card {
-  background: #fff;
+
   padding: 16px 18px 0;
   border-radius: 0;
   min-height: calc(100vh - 200px);
@@ -67,8 +67,9 @@
 
 .news-article-card h1 {
   margin: 0 0 12px;
+  margin-bottom: 40px;
   color: #1b2a38;
-  font-size: clamp(1.7rem, 2.2vw, 2.5rem);
+  font-size: 60px;
   line-height: 1.2;
   letter-spacing: -0.03em;
   font-weight: 800;
@@ -83,9 +84,11 @@
 
 .news-page-content {
   color: #1d2d3d;
-  font-size: 1rem;
-  line-height: 1.7;
+  margin: 10px;
+  font-size: 30px;
+  line-height: 1.8;
   padding-right: 8px;
+  margin-bottom: 70px;
 }
 
 .news-page-content p {
@@ -93,18 +96,28 @@
 }
 
 .news-visual {
-  position: relative;
-  height: 180px;
-  border-radius: 8px;
-  overflow: hidden;
-  background: linear-gradient(135deg, #f4d3c2 0%, #d75434 30%, #0c2b43 100%);
+  width: 100%;
+  padding-left: 30px;
+  padding-top: 10px;
+  float: right;
+}
+
+.news-visual-image {
+
+  width: 100%;
+  max-width: 800px;
+  height: 400px;
+  object-fit: cover;
+  border-radius: 12px;
+  justify-content: center;
+  align-items: center;
+
 }
 
 .news-visual-figure {
   position: absolute;
   inset: 0;
   background:
-    radial-gradient(circle at 35% 30%, rgba(255, 255, 255, 0.85) 0 7%, transparent 8%),
     radial-gradient(circle at 60% 35%, rgba(255, 255, 255, 0.2) 0 18%, transparent 19%),
     linear-gradient(135deg, rgba(255, 255, 255, 0.15), rgba(0, 0, 0, 0.12));
 }
@@ -118,35 +131,10 @@
   justify-content: center;
   padding: 4px 8px;
   border-radius: 6px;
-  background: rgba(255, 255, 255, 0.8);
+  
   color: #1d3d57;
   font-size: 0.52rem;
   font-weight: 700;
-}
-
-.news-shell-footer {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 8px;
-  padding: 10px 12px;
-  background: #ebebeb;
-  border-top: 1px solid rgba(12, 35, 56, 0.08);
-}
-
-.news-shell-footer-copy {
-  display: flex;
-  flex-direction: column;
-  gap: 2px;
-  color: #586d7d;
-  font-size: 0.48rem;
-  line-height: 1.2;
-}
-
-.news-shell-footer-copy strong {
-  color: #1c2c3a;
-  font-weight: 700;
-  font-size: 0.52rem;
 }
 
 .news-shell-brand-mark {
@@ -157,7 +145,7 @@
   height: 28px;
   border-radius: 8px;
   background: linear-gradient(135deg, #0d3d67 0%, #1c7edd 100%);
-  color: #fff;
+ 
   font-size: 1rem;
   font-weight: 700;
 }
