@@ -11,7 +11,7 @@ export default function Header() {
       </div>
       <nav className="nav-links">
         <Link to="/">Home</Link>
-        <Link to="/sobre">Sobre</Link>
+
         <Link to="/empresa">Empresa</Link>
       </nav>
       <div className="header-logo ms-auto">

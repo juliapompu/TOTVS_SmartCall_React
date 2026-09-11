@@ -39,3 +39,48 @@
     margin-top:150px;
 
 }
+
+/* =========================
+   MURAL DE EMPRESAS - HOME
+========================= */
+
+.home-company-section {
+    width: 100%;
+    margin-top: 50px;
+    padding: 0 20px;
+}
+
+.home-company-title {
+    margin-bottom: 25px;
+    font-size: 28px;
+    font-weight: 700;
+}
+
+/* GRID DA HOME */
+.home-company-grid {
+    width: 100%;
+
+    display: grid;
+
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+
+    gap: 24px;
+
+    align-items: stretch;
+}
+
+/* =========================
+   RESPONSIVIDADE
+========================= */
+
+@media (max-width: 1000px) {
+    .home-company-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 650px) {
+    .home-company-grid {
+        grid-template-columns: 1fr;
+    }
+}
