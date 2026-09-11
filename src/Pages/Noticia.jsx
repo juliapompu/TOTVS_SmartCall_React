@@ -45,8 +45,11 @@ const noticias = {
     summary: 'Conheça o evento que celebra inovação e resultados.',
     image: Noticia3,
     paragraphs: [
-      'O Prêmio TOTVS Brasil reconhece empresas e profissionais que transformam seus negócios por meio da tecnologia, da colaboração e da inovação.',
-      'A premiação destaca histórias de impacto, eficiência e uso estratégico de soluções digitais em diferentes setores da economia.',
+      'Valorizando os esforços das empresas na jornada de digitalização e inovação, a TOTVS, maior empresa de tecnologia do Brasil, está com as inscrições abertas para a 5ª edição do Prêmio TOTVS Brasil que faz. Referência no setor de tecnologia, a premiação reconhece e dá protagonismo aos clientes que utilizam as tecnologias TOTVS como uma alavanca estratégica para impulsionar os negócios, por meio da digitalização e inovação.',
+      'Empresas da região do ABC e Litoral Paulista, Vale do Paraíba e Sul de Minas Gerais, e que conquistaram resultados positivos em seus negócios com o apoio de soluções da TOTVS, podem inscrever seus cases de sucesso no site do prêmio.',
+      'As empresas que utilizam soluções da TOTVS podem inscrever seus projetos em uma das 12 categorias do prêmio e também nas categorias especiais de RH, Marketing & Vendas e Inovação – Lei do Bem. Dentre todos os vencedores, um será escolhido como a Empresa do Ano.',
+      'Para mais informações sobre a 5ª edição do Prêmio TOTVS Brasil que faz, acesse o site: premio.totvs.com. As inscrições são gratuitas e vão até o final de abril. Os vencedores serão anunciados no palco do Universo TOTVS 2026.',
+      'Maior empresa de tecnologia do Brasil, a TOTVS cria soluções para potencializar a evolução das pessoas e das empresas. Com mais de 70 mil clientes no Brasil e em diversos países da América Latina, possui um ecossistema completo de tecnologia: TOTVS Gestão, com ERPs, soluções cross e sistemas especializados que garantem mais produtividade, eficiência e governança; RD Station, com ferramentas digitais de marketing, vendas e relacionamento para as empresas impulsionarem seus negócios e crescerem; e Techfin ERP Finance, que oferece soluções de crédito B2B e pagamento para ampliar, simplificar e democratizar o acesso das empresas a serviços financeiros. Nos últimos 5 anos, a TOTVS investiu R$3 bilhões em pesquisa e desenvolvimento, com destaque para Inteligência Artificial, buscando inovar cada vez mais para ser o trusted advisor de seus clientes. As empresas que movem o país confiam na TOTVS. O Brasil que faz, faz com TOTVS. Saiba mais em: http://www.totvs.com.br'
     ],
   },
 };
