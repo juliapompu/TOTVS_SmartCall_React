@@ -36,13 +36,259 @@ export default function Home() {
 
     // Dados mocados das empresas utilizando as imagens locais importadas
     setCompanies([
-      { id: 1, name: 'Itaú Unibanco', logo: itauLogo, people: ['Ana Paula', 'Bruno Silva'], location: 'São Paulo/SP', tagline: 'Banco líder em serviços financeiros', sector: 'Serviços Financeiros', founded: '1945', website: 'https://www.itau.com.br', description: 'Itaú Unibanco entrega soluções bancárias digitais e corporativas para milhões de clientes, com foco em inovação, segurança e atendimento personalizado.', highlights: ['Bancos Digitais', 'Pagamentos', 'Gestão de Caixa'], focusAreas: ['Fintech', 'Cartões', 'Empresas'] },
-      { id: 2, name: 'Ambev', logo: ambevLogo, people: ['Carlos Edu', 'Daniela M.'], location: 'Rio de Janeiro/RJ', tagline: 'Referência em bebidas e varejo', sector: 'Consumo', founded: '1999', website: 'https://www.ambev.com.br', description: 'Ambev é uma das maiores fabricantes de bebidas do Brasil, combinando escala, sustentabilidade e inovação em portfólio nacional e internacional.', highlights: ['Sustentabilidade', 'Distribuição', 'Branding'], focusAreas: ['Bebidas', 'Logística', 'Comércio'] },
-      { id: 3, name: 'Magazine Luiza', logo: magaluLogo, people: ['Elaine S.', 'Fabio J.'], location: 'São Paulo/SP', tagline: 'E-commerce e varejo omnichannel', sector: 'Varejo', founded: '1957', website: 'https://www.magazineluiza.com.br', description: 'Magazine Luiza une loja física e digital para oferecer a melhor experiência de compra, com forte presença em tecnologia e relacionamento com o cliente.', highlights: ['Omnichannel', 'Marketplace', 'Digital'], focusAreas: ['E-commerce', 'Tecnologia', 'Vendas'] },
-      { id: 4, name: 'Localiza', logo: localizaLogo, people: ['Gisele R.', 'Hugo V.'], location: 'Belo Horizonte/MG', tagline: 'Mobilidade e aluguel de veículos', sector: 'Transporte', founded: '1973', website: 'https://www.localiza.com', description: 'Localiza oferece soluções de mobilidade para pessoas e empresas, com frota moderna, atendimento digital e ampla cobertura nacional.', highlights: ['Aluguel de Carros', 'Frota', 'Tecnologia'], focusAreas: ['Mobilidade', 'Fleet Management', 'Logística'] },
-      { id: 5, name: 'Grupo Fleury', logo: fleuryLogo, people: ['Igor L.', 'Julia T.'], location: 'São Paulo/SP', tagline: 'Saúde diagnóstica de ponta', sector: 'Saúde', founded: '1926', website: 'https://www.fleury.com.br', description: 'O Grupo Fleury é líder em medicina diagnóstica no Brasil, combinando centros de excelência, tecnologia médica e atendimento humanizado.', highlights: ['Diagnóstico', 'Pesquisa', 'Inovação'], focusAreas: ['Saúde', 'Laboratórios', 'Bem-estar'] },
+      {
+            id: 1,
+            name: 'Itaú Unibanco',
+            logo: itauLogo,
+            people: ['Ana Paula', 'Bruno Silva'],
+            location: 'São Paulo/SP',
+            tagline: 'Banco líder em serviços financeiros',
+            sector: 'Serviços Financeiros',
+            founded: '1945',
+            website: 'https://www.itau.com.br',
+      
+            description:
+              'Itaú Unibanco entrega soluções bancárias digitais e corporativas para milhões de clientes, com foco em inovação, segurança e atendimento personalizado.',
+      
+            highlights: [
+              'Bancos Digitais',
+              'Pagamentos',
+              'Gestão de Caixa'
+            ],
+      
+            focusAreas: [
+              'Fintech',
+              'Cartões',
+              'Empresas'
+            ],
+      
+            meetings: [
+              {
+                id: 1,
+                title: 'Reunião de alinhamento comercial',
+                date: '10/05/2026',
+                time: '14:30',
+                participants: ['Ana Paula', 'Bruno Silva'],
+                transcription:
+                  'Durante a reunião foram discutidas novas oportunidades de integração entre os sistemas da empresa e as soluções TOTVS.'
+              },
+              {
+                id: 2,
+                title: 'Apresentação de soluções',
+                date: '18/05/2026',
+                time: '10:00',
+                participants: ['Ana Paula', 'Carlos Mendes'],
+                transcription:
+                  'Foi realizada uma apresentação das soluções disponíveis. A equipe demonstrou interesse nas ferramentas de análise de dados e automação.'
+              }
+            ]
+          },
+       {
+            id: 2,
+            name: 'Ambev',
+            logo: ambevLogo,
+            people: ['Carlos Edu', 'Daniela M.'],
+            location: 'Rio de Janeiro/RJ',
+            tagline: 'Referência em bebidas e varejo',
+            sector: 'Consumo',
+            founded: '1999',
+            website: 'https://www.ambev.com.br',
+      
+            description:
+              'Ambev é uma das maiores fabricantes de bebidas do Brasil, combinando escala, sustentabilidade e inovação.',
+      
+            highlights: [
+              'Sustentabilidade',
+              'Distribuição',
+              'Branding'
+            ],
+      
+            focusAreas: [
+              'Bebidas',
+              'Logística',
+              'Comércio'
+            ],
+      
+            meetings: [
+              {
+                id: 1,
+                title: 'Reunião sobre logística',
+                date: '08/05/2026',
+                time: '09:30',
+                participants: ['Carlos Edu', 'Daniela M.'],
+                transcription:
+                  'A equipe discutiu melhorias na logística e distribuição dos produtos, buscando reduzir custos e aumentar a eficiência operacional.'
+              },
+              {
+                id: 2,
+                title: 'Planejamento estratégico',
+                date: '22/05/2026',
+                time: '11:00',
+                participants: ['Daniela M.', 'Ricardo Alves'],
+                transcription:
+                  'Foram discutidas estratégias para expansão e utilização de novas tecnologias nos processos internos.'
+              }
+            ]
+          },
+       {
+            id: 3,
+            name: 'Magazine Luiza',
+            logo: magaluLogo,
+            people: ['Elaine S.', 'Fabio J.'],
+            location: 'São Paulo/SP',
+            tagline: 'E-commerce e varejo omnichannel',
+            sector: 'Varejo',
+            founded: '1957',
+            website: 'https://www.magazineluiza.com.br',
+      
+            description:
+              'Magazine Luiza une loja física e digital para oferecer uma experiência de compra integrada.',
+      
+            highlights: [
+              'Omnichannel',
+              'Marketplace',
+              'Digital'
+            ],
+      
+            focusAreas: [
+              'E-commerce',
+              'Tecnologia',
+              'Vendas'
+            ],
+      
+            meetings: [
+              {
+                id: 1,
+                title: 'Reunião sobre e-commerce',
+                date: '15/05/2026',
+                time: '13:00',
+                participants: ['Elaine S.', 'Fabio J.'],
+                transcription:
+                  'A reunião discutiu melhorias na experiência digital e novas oportunidades para o comércio eletrônico.'
+              }
+            ]
+          },
+       {
+            id: 4,
+            name: 'Localiza',
+            logo: localizaLogo,
+            people: ['Gisele R.', 'Hugo V.'],
+            location: 'Belo Horizonte/MG',
+            tagline: 'Mobilidade e aluguel de veículos',
+            sector: 'Transporte',
+            founded: '1973',
+            website: 'https://www.localiza.com',
+      
+            description:
+              'Localiza oferece soluções de mobilidade para pessoas e empresas.',
+      
+            highlights: [
+              'Aluguel de Carros',
+              'Frota',
+              'Tecnologia'
+            ],
+      
+            focusAreas: [
+              'Mobilidade',
+              'Fleet Management',
+              'Logística'
+            ],
+      
+            meetings: [
+              {
+                id: 1,
+                title: 'Reunião sobre gestão de frota',
+                date: '20/05/2026',
+                time: '15:00',
+                participants: ['Gisele R.', 'Hugo V.'],
+                transcription:
+                  'Foram discutidas estratégias para melhorar a gestão da frota e utilizar tecnologia para aumentar a eficiência operacional.'
+              }
+            ]
+          },
+      {
+        id: 5,
+        name: 'Grupo Fleury',
+        logo: fleuryLogo,
+        people: ['Igor L.', 'Julia T.'],
+        location: 'São Paulo/SP',
+        tagline: 'Saúde diagnóstica de ponta',
+        sector: 'Saúde',
+        founded: '1926',
+        website: 'https://www.fleury.com.br',
+        description: 'O Grupo Fleury é líder em medicina diagnóstica no Brasil, combinando centros de excelência, tecnologia médica e atendimento humanizado.',
+        highlights: ['Diagnóstico', 'Pesquisa', 'Inovação'],
+        focusAreas: ['Saúde', 'Laboratórios', 'Bem-estar'],
+
+        meetings: [
+          {
+            id: 1,
+            title: 'Reunião sobre inovação',
+            date: '12/05/2026',
+            time: '16:00',
+            participants: ['Igor L.', 'Julia T.'],
+            transcription:
+              'A reunião abordou oportunidades de inovação e utilização de tecnologia para melhorar os processos de atendimento e diagnóstico.'
+          },
+          {
+            id: 2,
+            title: 'Apresentação de resultados',
+            date: '29/05/2026',
+            time: '14:00',
+            participants: ['Julia T.', 'Fernanda Lima'],
+            transcription:
+              'Foram apresentados os resultados do período e discutidas oportunidades para melhorar a eficiência dos processos.'
+          },
+          {
+            id: 3,
+            title: 'Reunião de acompanhamento',
+            date: '15/06/2026',
+            time: '10:30',
+            participants: ['Igor L.', 'Julia T.', 'Marcos Silva'],
+            transcription:
+              'A equipe avaliou o andamento das ações definidas anteriormente e estabeleceu os próximos passos do projeto.'
+          }
+        ]
+      },
       { id: 6, name: 'SEBRAE', logo: sebraeLogo, people: ['Katia M.', 'Leo N.'], location: 'Brasília/DF', tagline: 'Apoio a micro e pequenas empresas', sector: 'Educação', founded: '1972', website: 'https://www.sebrae.com.br', description: 'O SEBRAE promove empreendedorismo e capacitação para pequenos negócios em todo o Brasil, com programas de formação e consultoria especializada.', highlights: ['Empreendedorismo', 'Capacitação', 'Consultoria'], focusAreas: ['PME', 'Treinamento', 'Inovação'] },
-      { id: 7, name: 'Assaí Atacadista', logo: assaiLogo, people: ['Marta P.', 'Nuno G.'], location: 'São Paulo/SP', tagline: 'Atacado forte para varejo e indústrias', sector: 'Atacado', founded: '1974', website: 'https://www.assai.com.br', description: 'Assaí Atacadista oferece preços competitivos e sortimento amplo para comércio, indústria e profissionais, com logística integrada e presença nacional.', highlights: ['Preços Baixos', 'Sortimento', 'Logística'], focusAreas: ['Atacado', 'Bens de Consumo', 'Supply Chain'] },
+        {
+            id: 7,
+            name: 'Assaí Atacadista',
+            logo: assaiLogo,
+            people: ['Marta P.', 'Nuno G.'],
+            location: 'São Paulo/SP',
+            tagline: 'Atacado forte para varejo e indústrias',
+            sector: 'Atacado',
+            founded: '1974',
+            website: 'https://www.assai.com.br',
+      
+            description:
+              'Assaí oferece preços competitivos e amplo sortimento para comércio e indústria.',
+      
+            highlights: [
+              'Preços Baixos',
+              'Sortimento',
+              'Logística'
+            ],
+      
+            focusAreas: [
+              'Atacado',
+              'Bens de Consumo',
+              'Supply Chain'
+            ],
+      
+            meetings: [
+              {
+                id: 1,
+                title: 'Reunião sobre distribuição',
+                date: '05/06/2026',
+                time: '10:00',
+                participants: ['Marta P.', 'Nuno G.'],
+                transcription:
+                  'A reunião teve como foco a distribuição de produtos e oportunidades de melhoria na cadeia de abastecimento.'
+              }
+            ]
+          },
       { id: 8, name: 'Atacadão', logo: atacadaoLogo, people: ['Otávio S.', 'Paula F.'], location: 'São Paulo/SP', tagline: 'Rede de atacarejo para varejo e PME', sector: 'Atacado', founded: '1960', website: 'https://www.atacadao.com.br', description: 'Atacadão atende comerciantes e consumidores com grande variedade de produtos e preços competitivos em seus pontos de venda e canais digitais.', highlights: ['Atacarejo', 'Variedade', 'Economia'], focusAreas: ['Varejo', 'Distribuição', 'Compras'] },
       { id: 9, name: 'Grupo Muffato', logo: muffatoLogo, people: ['Quiteria L.', 'Ruan K.'], location: 'Cascavel/PR', tagline: 'Supermercados e distribuição regional', sector: 'Varejo', founded: '1979', website: 'https://www.muffato.com.br', description: 'Grupo Muffato atua no varejo alimentar e atacarejo, com foco em inovação, serviço local e experiência de compra de qualidade.', highlights: ['Supermercado', 'Atacado', 'Inovação'], focusAreas: ['Alimentação', 'Varejo', 'Experiência'] },
       { id: 10, name: 'Mart Minas', logo: martMinasLogo, people: ['Soraia B.', 'Tito A.'], location: 'Minas Gerais/MG', tagline: 'Rede de atacado para compras em grande volume', sector: 'Atacado', founded: '1978', website: 'https://www.martminas.com.br', description: 'Mart Minas oferece soluções de abastecimento para comerciantes e indústrias, com foco em preços competitivos e atendimento regionalizado.', highlights: ['Atacado', 'Parcerias', 'Produtos'], focusAreas: ['Agronegócio', 'Comércio', 'Distribuição'] },
