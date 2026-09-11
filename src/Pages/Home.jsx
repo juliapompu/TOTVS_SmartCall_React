@@ -95,26 +95,30 @@ export default function Home() {
         </div>
       </div>
 
-      {/* Mural de Empresas */}
-      <div className='CompanyCardTitle'>
-        <h3>Empresas Parceiras: </h3>
-      </div>
-      <div className="company-grid">
-       
-        {companies.map((company) => (
-          <CompanyCard
-            key={company.id}
-            company={company}
-            onClick={handleCompanyClick}
-          />
-        ))}
-      </div>
-        {selectedCompany && (
-          <CompanyDetailCard
-            company={selectedCompany}
-            onClose={() => setSelectedCompany(null)}
-          />
-        )}
+      {/* MURAL DE EMPRESAS */}
+      <section className="home-company-section">
+
+        <h2 className="home-company-title">
+          Empresas Parceiras
+        </h2>
+
+        <div className="home-company-grid">
+          {companies.map((company) => (
+            <CompanyCard
+              key={company.id}
+              company={company}
+              onClick={() => setSelectedCompany(company)}
+            />
+          ))}
+        </div>
+
+      </section>
+      {selectedCompany && (
+        <CompanyDetailCard
+          company={selectedCompany}
+          onClose={() => setSelectedCompany(null)}
+        />
+      )}
 
       {showUpload && (
         <JsonUploadDetail
