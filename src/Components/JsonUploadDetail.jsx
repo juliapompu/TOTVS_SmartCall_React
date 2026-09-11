@@ -26,27 +26,23 @@ export default function JsonUploadDetail({ onClose, onUpload }) {
   };
 
   return (
-    <div className="company-detail-overlay" onClick={onClose}>
-      <div className="company-detail-card" onClick={(e) => e.stopPropagation()}>
-        <button className="company-detail-close" onClick={onClose} aria-label="Fechar">×</button>
+    <div className="upload-detail-overlay" onClick={onClose}>
+      <div className="upload-detail-card" onClick={(e) => e.stopPropagation()}>
+        <button className="upload-detail-close" onClick={onClose} aria-label="Fechar">×</button>
 
-        <div className="company-detail-header">
-          <div>
-            <h3>Upload JSON</h3>
-            <p className="company-detail-subtitle">Selecione um arquivo .json para visualizar e carregar</p>
-          </div>
-        </div>
-
-        <div className="company-detail-section">
-          <input type="file" accept=".json,application/json" onChange={handleFile} />
-          {fileName && <p style={{margin:'8px 0 0 0'}}>Arquivo: {fileName}</p>}
-          {error && <p style={{color:'red'}}>{error}</p>}
+        <div className="upload-detail-content">
+          <label className="upload-detail-button">
+            <span>Cole sua transcrição aqui</span>
+            <input type="file" accept=".json,application/json" onChange={handleFile} />
+          </label>
+          {fileName && <p className="upload-detail-file-name">Arquivo: {fileName}</p>}
+          {error && <p className="upload-detail-error">{error}</p>}
         </div>
 
         {jsonText && (
-          <div className="company-detail-section">
-            <div className="company-detail-label">Preview</div>
-            <pre style={{background:'#6594c3',padding:10,borderRadius:4,overflow:'auto',maxHeight:300}}>{jsonText}</pre>
+          <div className="upload-detail-preview">
+            <div className="upload-detail-label">Preview</div>
+            <pre>{jsonText}</pre>
           </div>
         )}
       </div>
