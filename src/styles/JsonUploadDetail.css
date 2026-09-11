@@ -1,13 +1,119 @@
-.company-detail-card{
-  background: #7FB2F1;
-  width: 1000px;
-  height: 500px;
-  border-radius: 8px;
-  
+.upload-detail-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 1050;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  background: rgba(218, 233, 250, 0.88);
 }
 
+.upload-detail-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: min(100%, 820px);
+  min-height: 680px;
+  padding: 40px;
+  color: #f7fbff;
+  background: #7fb2f1;
+  border-radius: 15px;
+  box-shadow: -28px 32px 0 #71899c;
+}
 
-.company-detail-header{
+.upload-detail-close {
+  position: absolute;
+  top: 10px;
+  right: 14px;
+  z-index: 1;
+  padding: 0;
+  color: #ffffff;
+  font-size: 28px;
+  line-height: 1;
+  background: transparent;
+  border: 0;
+  cursor: pointer;
+}
 
-  
+.upload-detail-content {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.upload-detail-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: min(100%, 520px);
+  min-height: 78px;
+  padding: 0 30px;
+  color: #dbeaff;
+  font-size: 22px;
+  font-weight: 600;
+  text-align: center;
+  background: #3975b9;
+  border-radius: 999px;
+  cursor: pointer;
+  transition: background-color 180ms ease, transform 180ms ease;
+}
+
+.upload-detail-button:hover {
+  background: #3069a8;
+  transform: translateY(-2px);
+}
+
+.upload-detail-button input {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+.upload-detail-file-name,
+.upload-detail-error {
+  max-width: 100%;
+  margin: 12px 0 0;
+  overflow-wrap: anywhere;
+  text-align: center;
+}
+
+.upload-detail-error {
+  color: #8b1721;
+}
+
+.upload-detail-preview {
+  margin-top: 16px;
+}
+
+.upload-detail-label {
+  margin-bottom: 6px;
+  font-weight: 600;
+}
+
+.upload-detail-preview pre {
+  max-height: 180px;
+  margin: 0;
+  padding: 10px;
+  overflow: auto;
+  color: #17365b;
+  background: #6594c3;
+  border-radius: 4px;
+}
+
+@media (max-width: 480px) {
+  .upload-detail-card {
+    min-height: 400px;
+    padding: 24px;
+  }
+
+  .upload-detail-button {
+    min-height: 64px;
+    font-size: 18px;
+  }
 }

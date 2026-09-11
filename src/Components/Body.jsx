@@ -4,6 +4,7 @@ import Noticia2 from '../assets/noticia2.jpg';
 import Noticia3 from '../assets/noticia3.jpg';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
+import { Link } from 'react-router-dom';
 
 export default function Body() {
     return (
@@ -17,21 +18,27 @@ export default function Body() {
                 {/* aqui são as imgs que coloquei como noticias para girar no carrossel, precisa ter 3 imgs com cada uma 1 sessão explicando */}
                 <div className="carousel-inner">
                     <div className="carousel-item active">
-                        <img src={Noticia1} className="d-block w-100" alt="Notícia 1"/>
+                        <Link to="/noticia/1" className="news-image-link" aria-label="Ler notícia sobre TOTVS e ESPM">
+                            <img src={Noticia1} className="d-block w-100" alt="Notícia 1"/>
+                        </Link>
                         <div className="carousel-caption d-none d-md-block">
                             <h5>TOTVS + ESPM! Uma combinação de sucesso!</h5>
                             <p>TOTVS encontrou uma parceira com a ESMP para incluir graduações de marketing voltado a tecnologia na faculdade.</p>
                         </div>
                     </div>
                     <div className="carousel-item">
-                        <img src={Noticia2} className="d-block w-100" alt="Notícia 2"/>
+                        <Link to="/noticia/2" className="news-image-link" aria-label="Ler notícia sobre BTG e TOTVS">
+                            <img src={Noticia2} className="d-block w-100" alt="Notícia 2"/>
+                        </Link>
                         <div className="carousel-caption d-none d-md-block">
                             <h5>BTG e TOTVS quem diria?</h5>
                             <p>Veja mais sobre como a BTG Pactual comprou as ações da TOTVS em vez do Itau.</p>
                         </div>
                     </div>
                     <div className="carousel-item">
-                        <img src={Noticia3} className="d-block w-100" alt="Notícia 3"/>
+                        <Link to="/noticia/3" className="news-image-link" aria-label="Ler notícia sobre o Prêmio TOTVS Brasil">
+                            <img src={Noticia3} className="d-block w-100" alt="Notícia 3"/>
+                        </Link>
                         <div className="carousel-caption d-none d-md-block">
                             <h5>Prêmio TOTVS Brasil!</h5>
                             <p>Saiba mais sobre o evento mais esperado da TOTVS, conhece uma empresa que poderia fazer parte? Entre em contato pelo Complaence! </p>
