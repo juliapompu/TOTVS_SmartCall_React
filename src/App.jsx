@@ -9,14 +9,13 @@ import Noticia from '../src/Pages/Noticia';
 
 function App() {
   return (
-    <BrowserRouter>
+    <BrowserRouter basename="/TOTVS_SmartCall_React">
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route index element={<Home />} />
           <Route path="sobre" element={<Sobre />} />
           <Route path="empresa" element={<Empresa />} />
           <Route path="noticia/:id" element={<Noticia />} />
-          <Route path="/empresa" element={<Empresa />} />
         </Route>
       </Routes>
     </BrowserRouter>
