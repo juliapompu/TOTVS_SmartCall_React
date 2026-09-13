@@ -1,7 +1,7 @@
 import './Body.css';
-import Noticia1 from '../assets/noticia1.jpg';
-import Noticia2 from '../assets/noticia2.jpg';
-import Noticia3 from '../assets/noticia3.jpg';
+import Noticia1 from '../assets/Noticia1.jpg';
+import Noticia2 from '../assets/Noticia2.jpg';
+import Noticia3 from '../assets/Noticia3.jpg';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 import { Link } from 'react-router-dom';
