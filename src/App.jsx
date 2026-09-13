@@ -1,11 +1,11 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import './styles/variables.css';
-import Layout from './components/Layout';
-import Home from './Pages/Home';
-import Sobre from './pages/Sobre';
-import Empresa from './Pages/Empresa';
-import Noticia from './pages/Noticia';
+import '../src/styles/variables.css';
+import Layout from '../src/Components/Layout';
+import Home from '../src/Pages/Home';
+import Sobre from '../src/Pages/Sobre';
+import Empresa from '../src/Pages/Empresa';
+import Noticia from '../src/Pages/Noticia';
 
 function App() {
   return (
