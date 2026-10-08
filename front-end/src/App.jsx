@@ -7,9 +7,11 @@ import Sobre from '../src/Pages/Sobre';
 import Empresa from '../src/Pages/Empresa';
 import Noticia from '../src/Pages/Noticia';
 
+const routerBasename = import.meta.env.PROD ? '/TOTVS_SmartCall_React' : '/';
+
 function App() {
   return (
-    <BrowserRouter basename="/TOTVS_SmartCall_React">
+    <BrowserRouter basename={routerBasename}>
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route index element={<Home />} />
