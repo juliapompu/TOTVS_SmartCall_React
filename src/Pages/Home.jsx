@@ -1,18 +1,15 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 
 import TopListCard from '../Components/TopListCard';
 import CompanyCard from '../Components/CompanyCard';
 import CompanyDetailCard from '../Components/CompanyDetailCard';
-import JsonUploadDetail from '../Components/JsonUploadDetail';
 
-// Estilos
-import '../styles/Home.css';
-import '../Css/Body/carousel-effects.css';
-import '../Css/Body/carousel-layout.css';
-import '../Css/Body/carousel-responsive.css';
+import "../Css/Home/home-general.css";
+import "../Css/Home/company-mural.css";
+import "../Css/Home/news-section.css";
+import "../Css/Home/hero-section.css";
 
 // Logos das Empresas
 import itauLogo from '../assets/itau-logo.jpg';
@@ -39,7 +36,16 @@ export default function Home() {
   const [topEmployees, setTopEmployees] = useState([]);
   const [companies, setCompanies] = useState([]);
   const [selectedCompany, setSelectedCompany] = useState(null);
-  const [showUpload, setShowUpload] = useState(false);
+  
+  // Estado para controle do Carrossel Infinito
+  const [currentIndex, setCurrentIndex] = useState(3);
+  const [isTransitioning, setIsTransitioning] = useState(true);
+  const [isPaused, setIsPaused] = useState(false);
+
+  // Estados do upload de transcrição e vídeo
+  const [selectedAudio, setSelectedAudio] = useState(null);
+  const [selectedVideo, setSelectedVideo] = useState(null);
+  const videoInputRef = useRef(null);
 
   useEffect(() => {
     setTopClients(['Itaú Unibanco', 'Ambev', 'Magazine Luiza', 'Grupo Fleury', 'Localiza']);
@@ -62,118 +68,284 @@ export default function Home() {
     ]);
   }, []);
 
+  const extendedCompanies = companies.length > 0 
+    ? [...companies.slice(-3), ...companies, ...companies.slice(0, 3)]
+    : [];
+
+  const totalPages = Math.ceil(companies.length / 3);
+
+  const nextSlide = () => {
+    if (!isTransitioning) return;
+    setCurrentIndex((prev) => prev + 3);
+  };
+
+  const prevSlide = () => {
+    if (!isTransitioning) return;
+    setCurrentIndex((prev) => prev - 3);
+  };
+
+  const handleTransitionEnd = () => {
+    if (currentIndex >= companies.length + 3) {
+      setIsTransitioning(false);
+      setCurrentIndex(3);
+    } else if (currentIndex < 3) {
+      setIsTransitioning(false);
+      setCurrentIndex(companies.length);
+    }
+  };
+
+  useEffect(() => {
+    if (isPaused || companies.length === 0) return;
+
+    const interval = setInterval(() => {
+      nextSlide();
+    }, 3500);
+
+    return () => clearInterval(interval);
+  }, [currentIndex, isPaused, companies]);
+
+  useEffect(() => {
+    if (!isTransitioning) {
+      const timer = setTimeout(() => {
+        setIsTransitioning(true);
+      }, 50);
+      return () => clearTimeout(timer);
+    }
+  }, [isTransitioning]);
+
+  const activePageIndex = companies.length > 0
+    ? (Math.floor((currentIndex - 3) / 3) + totalPages) % totalPages
+    : 0;
+
+  const handleAudioChange = (e) => {
+    if (e.target.files && e.target.files[0]) {
+      setSelectedAudio(e.target.files[0].name);
+    }
+  };
+
+  const handleVideoChange = (e) => {
+    if (e.target.files && e.target.files[0]) {
+      setSelectedVideo(URL.createObjectURL(e.target.files[0]));
+    }
+  };
+
+  const triggerVideoSelect = () => {
+    if (videoInputRef.current) {
+      videoInputRef.current.click();
+    }
+  };
+
   return (
-    <div className="container pb-5">
-      {/* Carrossel Inline */}
-      <div className="carrosel-container">
-        <div id="carouselExampleCaptions" className="carousel slide" data-bs-ride="carousel" data-bs-interval="4000">
-          <div className="carousel-indicators">
-            <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" className="active" aria-current="true" aria-label="Próximo"></button>
-            <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Próximo"></button>
-            <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Próximo"></button>
+    <div className="home-container">
+      {/* SEÇÃO HERO - INSIGHTS E RANKING */}
+      <section className="hero-dashboard-container">
+        <div className="hero-card hero-insights-card">
+          <div className="insights-header">
+            <h2>Receba insights da sua reunião.</h2>
+            <p>
+              Receba insights da sua reunião com facilidade em tempo real. Veja a transcrição da sua reunião,
+              resumo das decisões tomadas e episódios gravados para estudo.
+            </p>
           </div>
-          <div className="carousel-inner">
-            <div className="carousel-item active">
-              <Link to="/noticia/1" className="news-image-link" aria-label="Ler notícia sobre TOTVS e ESPM">
-                <img src={Noticia1} className="d-block w-100" alt="Notícia 1" />
-              </Link>
-              <div className="carousel-caption d-none d-md-block">
-                <h5>TOTVS + ESPM! Uma combinação de sucesso!</h5>
-                <p>TOTVS encontrou uma parceira com a ESMP para incluir graduações de marketing voltado a tecnologia na faculdade.</p>
-              </div>
+
+          <div className="insights-content">
+            <input 
+              type="file" 
+              ref={videoInputRef} 
+              onChange={handleVideoChange} 
+              accept="video/*" 
+              style={{ display: 'none' }} 
+            />
+            
+            <div className="video-preview" onClick={triggerVideoSelect}>
+              {selectedVideo ? (
+                <video src={selectedVideo} controls className="video-element" />
+              ) : (
+                <div className="play-button">
+                  <svg viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M8 5v14l11-7z" />
+                  </svg>
+                </div>
+              )}
             </div>
-            <div className="carousel-item">
-              <Link to="/noticia/2" className="news-image-link" aria-label="Ler notícia sobre BTG e TOTVS">
-                <img src={Noticia2} className="d-block w-100" alt="Notícia 2" />
-              </Link>
-              <div className="carousel-caption d-none d-md-block">
-                <h5>BTG e TOTVS quem diria?</h5>
-                <p>Veja mais sobre como a BTG Pactual comprou as ações da TOTVS em vez do Itau.</p>
-              </div>
+
+            <label className="transcription-status-box clickable-upload">
+              <input 
+                type="file" 
+                onChange={handleAudioChange} 
+                accept="audio/*,.mp3,.doc,.docx,.vtt,.txt" 
+                style={{ display: 'none' }} 
+              />
+              <div className="status-badge">Faça upload da sua transcrição</div>
+              <p className="status-time">
+                {selectedAudio ? `Arquivo: ${selectedAudio}` : 'Clique para selecionar arquivo'}
+              </p>
+              <p className="status-note">
+                Aceita áudio (MP3), documentos (.doc, .docx), legendas (.vtt) e textos (.txt)
+              </p>
+            </label>
+          </div>
+        </div>
+
+        <div className="hero-card hero-ranking-card">
+          <div className="ranking-header">
+            <h3>Ranking</h3>
+            <span>Top Clientes</span>
+          </div>
+
+          <div className="ranking-list">
+            <div className="ranking-item">
+              <span className="rank-position">1</span>
+              <div className="rank-badge">Itaú Unibanco</div>
             </div>
-            <div className="carousel-item">
-              <Link to="/noticia/3" className="news-image-link" aria-label="Ler notícia sobre o Prêmio TOTVS Brasil">
-                <img src={Noticia3} className="d-block w-100" alt="Notícia 3" />
-              </Link>
-              <div className="carousel-caption d-none d-md-block">
-                <h5>Prêmio TOTVS Brasil!</h5>
-                <p>Saiba mais sobre o evento mais esperado da TOTVS, conhece uma empresa que poderia fazer parte? Entre em contato pelo Complaence!</p>
-              </div>
+            <div className="ranking-item">
+              <span className="rank-position">2</span>
+              <div className="rank-badge">Ambev</div>
+            </div>
+            <div className="ranking-item">
+              <span className="rank-position">3</span>
+              <div className="rank-badge">TOTVS Protheus</div>
+            </div>
+            <div className="ranking-item">
+              <span className="rank-position">4</span>
+              <div className="rank-badge">TOTVS RM</div>
+            </div>
+            <div className="ranking-item">
+              <span className="rank-position">5</span>
+              <div className="rank-badge">Magazine Luiza</div>
             </div>
           </div>
-          <button className="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
-            <span className="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span className="visually-hidden">Anterior</span>
+
+          <button className="ranking-nav-btn nav-left" aria-label="Anterior">
+            &#10094;
           </button>
-          <button className="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
-            <span className="carousel-control-next-icon" aria-hidden="true"></span>
-            <span className="visually-hidden">Próximo</span>
+          <button className="ranking-nav-btn nav-right" aria-label="Próximo">
+            &#10095;
           </button>
         </div>
-      </div>
+      </section>
 
-      <div className="text-center mb-5 mt-4">
-        <button className="botao-trascricao" onClick={() => setShowUpload(true)}>
-          <h4>Coloque sua transcrição aqui!</h4>
-        </button>
-      </div>
-
-      {/* Cards de Top 5 */}
-      <div className="row g-5 mt-4 mb-5">
-        <div className="col-12 col-md-4">
-          <TopListCard
-            title="Top 5 Clientes"
-            items={topClients}
-            alignTitle="left"
-            variant="standard"
-          />
-        </div>
-        <div className="col-12 col-md-4">
-          <TopListCard
-            title="Top 5 Produtos"
-            items={topProducts}
-            alignTitle="right"
-            variant="middle"
-          />
-        </div>
-        <div className="col-12 col-md-4">
-          <TopListCard
-            title="Top 5 Funcionários"
-            items={topEmployees}
-            alignTitle="left"
-            variant="standard"
-          />
-        </div>
-      </div>
-
-      {/* Mural de Empresas */}
+      {/* 1. MURAL DE EMPRESAS / PARCEIROS */}
       <section className="home-company-section">
-        <h2 className="home-company-title">Empresas Parceiras</h2>
-        <div className="home-company-grid">
-          {companies.map((company) => (
-            <CompanyCard
-              key={company.id}
-              company={company}
-              onClick={() => setSelectedCompany(company)}
+        <div className="CompanyCardTitle">
+          <h3>Empresas Parceiras</h3>
+        </div>
+
+        <div 
+          className="carousel-wrapper"
+          onMouseEnter={() => setIsPaused(true)}
+          onMouseLeave={() => setIsPaused(false)}
+        >
+          <button className="carousel-control prev" onClick={prevSlide} aria-label="Anterior">
+            &#10094;
+          </button>
+
+          <div className="carousel-track-container">
+            <div 
+              className="carousel-track" 
+              onTransitionEnd={handleTransitionEnd}
+              style={{ 
+                transform: `translateX(-${currentIndex * (100 / 3)}%)`,
+                transition: isTransitioning ? 'transform 0.8s cubic-bezier(0.25, 1, 0.5, 1)' : 'none'
+              }}
+            >
+              {extendedCompanies.map((company, index) => (
+                <div className="carousel-slide-item" key={`${company.id}-${index}`}>
+                  <CompanyCard 
+                    company={company} 
+                    onClick={() => setSelectedCompany(company)} 
+                  />
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <button className="carousel-control next" onClick={nextSlide} aria-label="Próximo">
+            &#10095;
+          </button>
+        </div>
+
+        {/* Indicadores do carrossel */}
+        <div className="carousel-indicators">
+          {Array.from({ length: totalPages }).map((_, idx) => (
+            <button
+              key={idx}
+              className={`indicator-dot ${activePageIndex === idx ? 'active' : ''}`}
+              onClick={() => {
+                setIsTransitioning(true);
+                setCurrentIndex((idx + 1) * 3);
+              }}
+              aria-label={`Ir para a página ${idx + 1}`}
             />
           ))}
         </div>
       </section>
 
-      {selectedCompany && (
-        <CompanyDetailCard
-          company={selectedCompany}
-          onClose={() => setSelectedCompany(null)}
-        />
-      )}
+      {/* 2. SEÇÃO NOTÍCIAS */}
+      <section className="news-section">
+        <h2 className="news-section-title">Notícias</h2>
+        <div className="row g-4">
+          <div className="col-md-4">
+            <div className="news-card">
+              <div className="news-card-img-wrapper">
+                <img src={Noticia1} alt="Notícia 1" />
+              </div>
+              <div className="news-card-content">
+                <h5>TOTVS + ESPM! Uma combinação de sucesso!</h5>
+                <p>TOTVS encontrou uma parceira com a ESPM para incluir graduações de marketing voltado à tecnologia.</p>
+                <Link to="#" className="news-card-btn">Saiba Mais</Link>
+              </div>
+            </div>
+          </div>
 
-      {showUpload && (
-        <JsonUploadDetail
-          onClose={() => setShowUpload(false)}
-          onUpload={(data) => {
-            console.log('JSON recebido:', data);
-            setShowUpload(false);
-          }}
+          <div className="col-md-4">
+            <div className="news-card">
+              <div className="news-card-img-wrapper">
+                <img src={Noticia2} alt="Notícia 2" />
+              </div>
+              <div className="news-card-content">
+                <h5>BTG e TOTVS quem diria?</h5>
+                <p>Veja mais sobre como o BTG Pactual expandiu sua participação estratégica nas ações corporativas.</p>
+                <Link to="#" className="news-card-btn">Saiba Mais</Link>
+              </div>
+            </div>
+          </div>
+
+          <div className="col-md-4">
+            <div className="news-card">
+              <div className="news-card-img-wrapper">
+                <img src={Noticia3} alt="Notícia 3" />
+              </div>
+              <div className="news-card-content">
+                <h5>Prêmio TOTVS Brasil!</h5>
+                <p>Saiba mais sobre o evento mais esperado da TOTVS e veja como indicar empresas parceiras.</p>
+                <Link to="#" className="news-card-btn">Saiba Mais</Link>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* 3. CARDS DE TOP 5 */}
+      <section className="top-lists-section">
+        <div className="row g-4">
+          <div className="col-md-4">
+            <TopListCard title="Top 5 Clientes" items={topClients} />
+          </div>
+          <div className="col-md-4">
+            <TopListCard title="Top 5 Produtos" items={topProducts} />
+          </div>
+          <div className="col-md-4">
+            <TopListCard title="Top 5 Funcionários" items={topEmployees} />
+          </div>
+        </div>
+      </section>
+
+      {/* MODAL DETALHES DA EMPRESA */}
+      {selectedCompany && (
+        <CompanyDetailCard 
+          company={selectedCompany} 
+          onClose={() => setSelectedCompany(null)} 
         />
       )}
     </div>

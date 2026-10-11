@@ -1,5 +1,13 @@
 import React from 'react';
-import './CompanyDetailCard.css';
+// import '../Css/CompanyDetailCard/CompanyDetailCard.css';
+
+
+import '../Css/CompanyDetailCard/modal.css';
+import '../Css/CompanyDetailCard/header.css';
+import '../Css/CompanyDetailCard/content.css';
+import '../Css/CompanyDetailCard/meetings.css';
+import '../Css/CompanyDetailCard/responsive.css';
+import '../Css/CompanyDetailCard/scrollbar.css';
 
 export default function CompanyDetailCard({ company, onClose }) {
 

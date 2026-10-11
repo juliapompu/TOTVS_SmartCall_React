@@ -1,5 +1,5 @@
 import { Link, useParams } from 'react-router-dom';
-import '../styles/Noticia.css';
+import '../Css/Noticia/Noticia.css';
 import Noticia1 from '../assets/Noticia1.jpg';
 import Noticia2 from '../assets/Noticia2.jpg';
 import Noticia3 from '../assets/Noticia3.jpg';

@@ -1,5 +1,10 @@
 import React from 'react';
-import './TopListCard.css';
+
+
+import "../Css/TopListCard/top-list-card.css"
+import "../Css/TopListCard/top-list-header.css"
+import "../Css/TopListCard/top-list-content.css"
+import "../Css/TopListCard/top-list-waves.css"
 
 export default function TopListCard({ title, items, alignTitle = 'left', variant = 'standard' }) {
   const isMiddle = variant === 'middle';

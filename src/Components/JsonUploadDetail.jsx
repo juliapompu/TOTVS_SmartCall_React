@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import '../styles/JsonUploadDetail.css';
+import '../Css/JsonUploadDetails/JsonUploadDetail.css';
 
 export default function JsonUploadDetail({ onClose, onUpload }) {
   const [fileName, setFileName] = useState('');

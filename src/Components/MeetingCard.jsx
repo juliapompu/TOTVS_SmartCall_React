@@ -1,5 +1,5 @@
 import { formatDate } from '../utils/formatters';
-import './MeetingCard.css';
+import '../Css/MeetingCard';
 
 const STATUS_COLORS = {
   'Agendada': 'text-primary',

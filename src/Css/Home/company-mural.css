@@ -1,0 +1,198 @@
+/* ==========================================================================
+   MURAL DE EMPRESAS (CARROSSEL INFINITO E AUTOPLAY)
+   ========================================================================== */
+@keyframes pulseGlow {
+    0% {
+        box-shadow: 0 0 0 0 rgba(0, 210, 255, 0.6);
+    }
+    70% {
+        box-shadow: 0 0 0 12px rgba(0, 210, 255, 0);
+    }
+    100% {
+        box-shadow: 0 0 0 0 rgba(0, 210, 255, 0);
+    }
+}
+
+.CompanyCardTitle h3 {
+    font-size: 36px;
+    font-weight: 800;
+    color: #084677;
+    text-align: center;
+    margin-top: 40px;
+    margin-bottom: 30px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    background: linear-gradient(135deg, #084677 0%, #00d2ff 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.home-company-section {
+    width: 100%;
+    margin-top: 20px;
+    padding: 0 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.carousel-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    width: 100%;
+    gap: 36px;
+}
+
+.carousel-track-container {
+    width: 100%;
+    overflow: hidden;
+    padding: 20px 0;
+}
+
+.carousel-track {
+    display: flex;
+    width: 100%;
+}
+
+.carousel-slide-item {
+    flex: 0 0 33.333333%;
+    max-width: 33.333333%;
+    padding: 0 16px;
+    box-sizing: border-box;
+}
+
+/* BOTOES DE CONTROLE LATERAIS (ESPAÇADOS) */
+.carousel-control {
+    background: #084677;
+    color: #ffffff;
+    border: 2px solid #ffffff;
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    font-size: 22px;
+    cursor: pointer;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.18);
+    flex-shrink: 0;
+    position: relative;
+    overflow: hidden;
+}
+
+.carousel-control::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: conic-gradient(transparent, rgba(0, 210, 255, 0.8), transparent 30%);
+    animation: rotateBorder 3s linear infinite;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+@keyframes rotateBorder {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.carousel-control:hover {
+    background: #00d2ff;
+    color: #084677;
+    transform: scale(1.18) rotate(8deg);
+    box-shadow: 0 8px 22px rgba(0, 210, 255, 0.45);
+    animation: pulseGlow 1.5s infinite;
+}
+
+.carousel-control:hover::before {
+    opacity: 1;
+}
+
+.carousel-control.prev {
+    margin-right: 0;
+}
+
+.carousel-control.next {
+    margin-left: 0;
+}
+
+/* MARCADORES CENTRALIZADOS */
+.carousel-indicators {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+    margin-top: 25px;
+    margin-bottom: 25px;
+    padding: 10px 0;
+    width: 100%;
+    position: relative;
+    z-index: 5;
+}
+
+.indicator-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background-color: #cbd5e1;
+    border: none;
+    cursor: pointer;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    padding: 0;
+    display: inline-block;
+    position: relative;
+}
+
+.indicator-dot:hover {
+    background-color: #94a3b8;
+    transform: scale(1.3);
+}
+
+.indicator-dot.active {
+    background-color: #084677;
+    width: 32px;
+    border-radius: 6px;
+    box-shadow: 0 2px 12px rgba(8, 70, 119, 0.5);
+    animation: pulseGlow 2s infinite;
+}
+
+/* Css da responsividade desse componente */
+@media (max-width: 1024px) {
+    .carousel-slide-item {
+        flex: 0 0 50%;
+        max-width: 50%;
+    }
+}
+
+@media (max-width: 650px) {
+    .carousel-wrapper {
+        gap: 12px;
+    }
+
+    .carousel-slide-item {
+        flex: 0 0 100%;
+        max-width: 100%;
+        padding: 0 8px;
+    }
+    
+    .CompanyCardTitle h3 {
+        font-size: 26px;
+        margin-top: 20px;
+    }
+
+    .carousel-control {
+        width: 42px;
+        height: 42px;
+        font-size: 18px;
+    }
+
+    .carousel-indicators {
+        margin-top: 15px;
+    }
+}

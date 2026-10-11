@@ -1,0 +1,30 @@
+.top-list-card {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  min-height: 360px;
+  background-color: #03173d;
+  border-radius: 0;
+  box-shadow: -14px 14px 0px rgba(100, 125, 145, 0.45);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.top-list-card:hover {
+  transform: translate(2px, -2px);
+  box-shadow: -18px 18px 0px rgba(100, 125, 145, 0.55);
+}
+
+/* Css da responsividade desse componente */
+@media (max-width: 768px) {
+  .top-list-card {
+    min-height: 300px;
+    box-shadow: -8px 8px 0px rgba(100, 125, 145, 0.45);
+  }
+
+  .top-list-card:hover {
+    box-shadow: -10px 10px 0px rgba(100, 125, 145, 0.55);
+  }
+}

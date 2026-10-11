@@ -1,0 +1,38 @@
+/* =========================================
+   ESTILIZAÇÃO DE BARRA DE ROLAGEM
+========================================= */
+
+/* Suporte para Chrome, Safari, Edge e Opera */
+.company-modal::-webkit-scrollbar,
+.meetings-list::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+.company-modal::-webkit-scrollbar-track,
+.meetings-list::-webkit-scrollbar-track {
+  background: transparent;
+  margin: 10px 0;
+}
+
+.company-modal::-webkit-scrollbar-thumb,
+.meetings-list::-webkit-scrollbar-thumb {
+  background: #252525;
+  border-radius: 20px;
+  box-shadow: 0 0 10px rgba(37, 37, 37, 0.4);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.company-modal::-webkit-scrollbar-thumb:hover,
+.meetings-list::-webkit-scrollbar-thumb:hover {
+  background: #121212;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.7);
+  transform: scale(1.1);
+}
+
+/* Suporte para Firefox */
+.company-modal,
+.meetings-list {
+  scrollbar-width: thin;
+  scrollbar-color: #252525 transparent;
+}

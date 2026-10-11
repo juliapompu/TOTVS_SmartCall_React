@@ -1,14 +1,12 @@
 import { useRef, useState, useLayoutEffect } from 'react';
 import { NavLink, useLocation } from 'react-router-dom';
 import logo from "../assets/TOTVS_SmartCall_Logo.jpeg";
-// import './Header.css';
 
-import "../Css/Header/animations.css"
-import "../Css/Header/header.css"
-import "../Css/Header/main.css"
-import "../Css/Header/responsividade.css"
-import "../Css/Header/variables.css"
-
+import "../Css/Header/animations.css";
+import "../Css/Header/header.css";
+import "../Css/Header/main.css";
+import "../Css/Header/responsividade.css";
+import "../Css/Header/variables.css";
 
 export default function Header() {
   const location = useLocation();
@@ -40,7 +38,7 @@ export default function Header() {
 
       <nav className="nav-links" ref={navRef}>
         <NavLink to="/" end>Home</NavLink>
-        <NavLink to="/empresa">Empresas Parceiras</NavLink>
+        <NavLink to="/empresas-parceiras">Empresas Parceiras</NavLink>
 
         <span className="nav-indicator" style={indicatorStyle} />
       </nav>
