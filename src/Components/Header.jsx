@@ -38,7 +38,7 @@ export default function Header() {
 
       <nav className="nav-links" ref={navRef}>
         <NavLink to="/" end>Home</NavLink>
-        <NavLink to="/empresas-parceiras">Empresas Parceiras</NavLink>
+        <NavLink to="/empresas-parceiras">Parceiras</NavLink>
 
         <span className="nav-indicator" style={indicatorStyle} />
       </nav>
