@@ -1,0 +1,27 @@
+
+.footer-container {
+  position: relative;
+  width: 100%;
+  min-height: 140px;
+  background: linear-gradient(135deg, #0b0f19 0%, #111827 100%);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 30px 60px;
+  z-index: 1;
+  overflow: hidden;
+  box-shadow: 0 -10px 30px rgba(0, 0, 0, 0.5);
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.footer-left {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  z-index: 3;
+  color: #ffffff;
+}
+
+.footer-right {
+  z-index: 3;
+}

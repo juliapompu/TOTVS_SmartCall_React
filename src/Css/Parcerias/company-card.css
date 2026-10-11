@@ -1,0 +1,129 @@
+/* company-card.css */
+
+@keyframes borderGlowPulse {
+  0% {
+    border-color: rgba(102, 155, 216, 0.4);
+    box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.3),
+                0 0 15px rgba(102, 155, 216, 0.2);
+  }
+  50% {
+    border-color: rgba(255, 255, 255, 0.8);
+    box-shadow: 0 20px 40px -12px rgba(0, 0, 0, 0.4),
+                0 0 25px rgba(255, 255, 255, 0.5);
+  }
+  100% {
+    border-color: rgba(102, 155, 216, 0.4);
+    box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.3),
+                0 0 15px rgba(102, 155, 216, 0.2);
+  }
+}
+
+@keyframes holographicShine {
+  0% {
+    transform: translateX(-150%) rotate(30deg);
+  }
+  100% {
+    transform: translateX(250%) rotate(30deg);
+  }
+}
+
+.company-card {
+  position: relative;
+  background: linear-gradient(135deg, #2b5283 0%, #172a45 100%);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 20px;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 20px;
+  min-height: 220px;
+  cursor: pointer;
+  overflow: hidden;
+  backdrop-filter: blur(12px);
+  box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.3);
+  transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275),
+              border-color 0.4s ease,
+              box-shadow 0.4s ease;
+}
+
+.company-card-glow {
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle at center, rgba(120, 171, 231, 0.25) 0%, transparent 60%);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.5s ease;
+}
+
+.company-card::after {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: 0;
+  width: 60%;
+  height: 200%;
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.25) 50%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  transform: translateX(-150%) rotate(30deg);
+  pointer-events: none;
+}
+
+.company-card:hover {
+  transform: translateY(-8px) scale(1.02);
+  animation: borderGlowPulse 2.5s infinite ease-in-out;
+}
+
+.company-card:hover .company-card-glow {
+  opacity: 1;
+}
+
+.company-card:hover::after {
+  animation: holographicShine 1.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.company-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.company-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: #eaf2ff;
+  font-size: 11px;
+  font-weight: 600;
+  padding: 6px 12px;
+  border-radius: 20px;
+  backdrop-filter: blur(4px);
+  letter-spacing: 0.3px;
+}
+
+.badge-dot {
+  width: 6px;
+  height: 6px;
+  background-color: #669bd8;
+  border-radius: 50%;
+  box-shadow: 0 0 8px #669bd8;
+}
+
+/* Css da responsividade desse componente */
+@media (max-width: 576px) {
+  .company-card {
+    padding: 18px;
+    min-height: auto;
+    border-radius: 16px;
+  }
+}

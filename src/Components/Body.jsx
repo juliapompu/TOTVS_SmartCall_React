@@ -1,10 +1,15 @@
-import './Body.css';
 import Noticia1 from '../assets/noticia1.jpg';
 import Noticia2 from '../assets/noticia2.jpg';
 import Noticia3 from '../assets/noticia3.jpg';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 import { Link } from 'react-router-dom';
+
+
+import "../Css/Body/carousel-effects.css"
+import "../Css/Body/carousel-layout.css"
+import "../Css/Body/carousel-responsive.css"
+
 
 export default function Body() {
     return (

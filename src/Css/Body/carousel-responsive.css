@@ -1,0 +1,6 @@
+/* Css da responsividade desse componente */
+@media (max-width: 768px) {
+    .carousel-item img {
+        height: 260px;
+    }
+}

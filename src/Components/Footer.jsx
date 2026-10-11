@@ -1,5 +1,15 @@
 import logo from "../assets/TOTVS_SmartCall_Logo.jpeg";
-import './Footer.css';
+// import '../Css/Footer/Footer.css';
+
+
+import '../Css/Footer/variables.css';
+import '../Css/Footer/animatios.css';
+import '../Css/Footer/footer.css';
+import '../Css/Footer/footer-shapes.css';
+import '../Css/Footer/footer-links.css';
+import '../Css/Footer/footer-socials.css';
+import '../Css/Footer/footer-brand.css';
+import '../Css/Footer/responsividade.css';
 
 export default function Footer() {
   return (

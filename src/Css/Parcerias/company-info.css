@@ -1,0 +1,63 @@
+/* company-info.css */
+
+.company-info {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 12px;
+  z-index: 1;
+}
+
+.company-name {
+  font-size: 18px;
+  font-weight: 800;
+  color: #ffffff;
+  margin: 0;
+  letter-spacing: -0.2px;
+  line-height: 1.2;
+  transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.company-card:hover .company-name {
+  color: #ffffff;
+  text-shadow: 0 0 12px rgba(255, 255, 255, 0.4);
+  transform: translateX(2px);
+}
+
+.company-people-container {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  width: 100%;
+}
+
+.company-people-label {
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  color: rgba(255, 255, 255, 0.5);
+  font-weight: 700;
+}
+
+.company-people {
+  font-size: 13px;
+  color: #c2d8f2;
+  margin: 0;
+  line-height: 1.4;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: 100%;
+}
+
+/* Css da responsividade desse componente */
+@media (max-width: 576px) {
+  .company-name {
+    font-size: 16px;
+  }
+
+  .company-people {
+    font-size: 12px;
+  }
+}
