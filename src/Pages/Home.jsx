@@ -341,6 +341,8 @@ export default function Home() {
         </div>
       </section>
 
+      <br/>    <br/>
+
       {/* MODAL DETALHES DA EMPRESA */}
       {selectedCompany && (
         <CompanyDetailCard 
