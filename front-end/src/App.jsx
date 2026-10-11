@@ -11,7 +11,8 @@ const routerBasename = import.meta.env.PROD ? '/TOTVS_SmartCall_React' : '/';
 
 function App() {
   return (
-    <BrowserRouter basename={routerBasename}>
+    // App.jsx
+    <BrowserRouter basename={import.meta.env.BASE_URL === '/' ? '' : '/TOTVS_SmartCall_React'}> 
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route index element={<Home />} />
