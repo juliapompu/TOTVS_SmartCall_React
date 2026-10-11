@@ -6,7 +6,7 @@ from dotenv import load_dotenv
 from fastapi import FastAPI, UploadFile, File, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 
-from openai import OpenAI
+from groq import Groq
 from supabase import create_client, Client
 
 
@@ -16,13 +16,13 @@ from supabase import create_client, Client
 
 load_dotenv()
 
-OPENAI_API_KEY = os.getenv("")
-SUPABASE_URL = os.getenv("")
-SUPABASE_SERVICE_ROLE_KEY = os.getenv("")
+GROQ_API_KEY = os.getenv("GROQ_API_KEY")
+SUPABASE_URL = os.getenv("SUPABASE_URL")
+SUPABASE_SERVICE_ROLE_KEY = os.getenv("SUPABASE_SERVICE_ROLE_KEY")
 
 
-if not OPENAI_API_KEY:
-    raise RuntimeError("OPENAI_API_KEY não configurada.")
+if not GROQ_API_KEY:
+    raise RuntimeError("GROQ_API_KEY não configurada.")
 
 if not SUPABASE_URL:
     raise RuntimeError("SUPABASE_URL não configurada.")
@@ -35,8 +35,8 @@ if not SUPABASE_SERVICE_ROLE_KEY:
 # CLIENTES
 # =========================================================
 
-openai_client = OpenAI(
-    api_key=OPENAI_API_KEY
+groq_client = Groq(
+    api_key=GROQ_API_KEY
 )
 
 supabase: Client = create_client(
@@ -124,9 +124,7 @@ async def processar_arquivo(
 
         }).execute()
 
-
         processamento = registro.data[0]
-
         processamento_id = processamento["id"]
 
 
@@ -168,14 +166,12 @@ Conteúdo:
 {texto[:30000]}
 """
 
-
-        resposta = openai_client.responses.create(
-            model="gpt-5.6-luna",
-            input=prompt
+        resposta = groq_client.chat.completions.create(
+            model="openai/gpt-oss-20b",
+            messages=[{"role": "user", "content": prompt}]
         )
 
-
-        resultado = resposta.output_text
+        resultado = resposta.choices[0].message.content
 
 
         # -------------------------------------------------
@@ -198,7 +194,6 @@ ANÁLISE DA IA
 {resultado}
 """
 
-
         relatorio_bytes = relatorio.encode("utf-8")
 
 
@@ -211,7 +206,6 @@ ANÁLISE DA IA
             f"{processamento_id}/"
             f"relatorio.txt"
         )
-
 
         supabase.storage.from_(
             "resultados"
@@ -261,13 +255,9 @@ ANÁLISE DA IA
         return {
 
             "id": processamento_id,
-
             "status": "CONCLUIDO",
-
             "nome_arquivo": arquivo.filename,
-
             "resultado": resultado,
-
             "arquivo_url": arquivo_url
 
         }
@@ -303,6 +293,5 @@ def listar_processamentos():
         "criado_em",
         desc=True
     ).execute()
-
 
     return resultado.data
