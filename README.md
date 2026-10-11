@@ -1,16 +1,126 @@
-# React + Vite
+# TOTVS SmartCall
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
-Currently, two official plugins are available:
+Plataforma web que usa IA para extrair insights estratégicos de transcrições de reuniões: reclamações, oportunidades e ideias estratégicas, tudo visualizado em um dashboard.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+🔗 **Demo:** https://totvs-smart-call.vercel.app
 
-## React Compiler
+> Projeto acadêmico da FIAP (Challenge) em parceria com a TOTVS.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+---
 
-## Expanding the ESLint configuration
+## Sobre o projeto
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+Reuniões com clientes geram muita informação que se perde em transcrições longas. O SmartCall processa essas transcrições, identifica o que realmente importa e apresenta os resultados de forma visual para facilitar a tomada de decisão.
+
+### Principais funcionalidades
+
+- Análise de transcrições de reuniões com IA
+- Classificação dos insights em reclamações, oportunidades e ideias estratégicas
+- Dashboard com rankings "Top 5" (clientes, produtos e colaboradores)
+
+
+---
+
+## Tecnologias
+
+**Front-end**
+- React
+- Vite
+- React Bootstrap + CSS customizado
+
+**Back-end**
+- Python
+- Banco de dados SupaBase
+- API de IA: OpenIA
+
+**Deploy e CI**
+- Vercel (front-end)
+- GitHub Actions
+
+---
+
+## Estrutura do repositório
+
+```
+TOTVS_SmartCall_React/
+├── .github/workflows/   # pipelines de CI
+├── back-end/            # API e integração com o banco
+├── front-end/           # O rosto da nossa solução
+├── public/              # arquivos estáticos
+├── eslint.config.js
+├── vite.config.js
+└── package.json
+```
+
+---
+
+## Como rodar localmente
+
+### Pré-requisitos
+
+- Node.js 11.5.2 ou superior
+- npm
+- [acesso ao banco Oracle / outras dependências do back-end]
+
+### Front-end
+
+```bash
+# clonar o repositório
+git clone https://github.com/juliapompu/TOTVS_SmartCall_React.git
+cd TOTVS_SmartCall_React
+cd front-end
+
+# instalar dependências
+npm install
+
+# rodar em modo desenvolvimento
+npm run dev
+```
+
+A aplicação sobe em `http://localhost:5173`.
+
+Para gerar o build de produção:
+
+```bash
+npm run build
+```
+
+### Back-end
+
+```bash
+cd back-end
+# [comandos para instalar e rodar o back-end]
+```
+
+### Variáveis de ambiente
+
+Crie um arquivo `.env` com:
+
+```
+VITE_API_URL=[url da API]
+# [outras variáveis necessárias]
+```
+
+---
+
+## Banco de dados
+
+O banco SupaBase possui 5 tabelas que armazenam [clientes, reuniões, transcrições, insights... ajuste conforme o modelo real]. A documentação completa está em [link/pasta].
+
+---
+
+## Equipe
+
+Projeto desenvolvido pelo grupo **CONTROL** (FIAP, turma 2-ESPV):
+
+- Julia — [@juliapompu](https://github.com/juliapompu)
+- Thayná — [link]
+- Giovana — [link]
+- Luiz — [link]
+
+---
+
+## Licença
+
+Projeto acadêmico sem fins comerciais. [ou adicione a licença que preferir]
