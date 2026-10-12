@@ -1,9 +1,0 @@
-/* Transições e microinterações de hover */
-.news-image-link img {
-    transition: filter 180ms ease, transform 180ms ease;
-}
-
-.news-image-link:hover img {
-    filter: brightness(0.88);
-    transform: scale(1.01);
-}
