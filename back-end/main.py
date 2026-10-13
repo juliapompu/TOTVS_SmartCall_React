@@ -1,9 +1,13 @@
 import os
-import io
+import json
+import re
+import zipfile
+from io import BytesIO
 from datetime import datetime, timezone
+from xml.etree import ElementTree
 
 from dotenv import load_dotenv
-from fastapi import FastAPI, UploadFile, File, HTTPException
+from fastapi import FastAPI, UploadFile, File, Form, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 
 from groq import Groq
@@ -44,6 +48,9 @@ supabase: Client = create_client(
     SUPABASE_SERVICE_ROLE_KEY
 )
 
+MAX_UPLOAD_SIZE = 50 * 1024 * 1024
+SUPPORTED_EXTENSIONS = {".docx", ".vtt", ".txt"}
+
 
 # =========================================================
 # FASTAPI
@@ -62,12 +69,8 @@ app = FastAPI(
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=[
-        "http://localhost:5173",
-        "http://localhost:3000",
-        "https://vercel.app"
-    ],
-    allow_credentials=True,
+    allow_origins=["*"],
+    allow_credentials=False,
     allow_methods=["*"],
     allow_headers=["*"],
 )
@@ -87,9 +90,320 @@ def home():
     }
 
 
+def _get_field(row: dict, field: str):
+    snake_case = re.sub(r"(?<!^)(?=[A-Z])", "_", field).lower()
+    return row.get(field, row.get(snake_case))
+
+
+def _normalize_company(row: dict) -> dict:
+    meetings = _get_field(row, "meetings") or []
+    if not isinstance(meetings, list):
+        raise HTTPException(
+            status_code=500,
+            detail="A coluna companies.meetings deve conter uma lista JSON."
+        )
+
+    return {
+        "id": row.get("id"),
+        "name": row.get("name"),
+        "logoUrl": _get_field(row, "logoUrl") or "",
+        "meetingsCount": _get_field(row, "meetingsCount")
+        if _get_field(row, "meetingsCount") is not None
+        else len(meetings),
+        "people": row.get("people") or [],
+        "location": row.get("location") or "",
+        "tagline": row.get("tagline") or "",
+        "sector": row.get("sector") or "",
+        "website": row.get("website") or "",
+        "description": row.get("description") or "",
+        "highlights": row.get("highlights") or [],
+        "focusAreas": _get_field(row, "focusAreas") or [],
+        "createdAt": _get_field(row, "createdAt") or "",
+        "meetings": meetings,
+    }
+
+
+def _normalize_news(row: dict) -> dict:
+    return {
+        "id": row.get("id"),
+        "slug": row.get("slug"),
+        "title": row.get("title"),
+        "summary": row.get("summary"),
+        "category": row.get("category"),
+        "author": row.get("author"),
+        "publishedAt": _get_field(row, "publishedAt"),
+        "imageUrl": _get_field(row, "imageUrl"),
+        "paragraphs": row.get("paragraphs") or [],
+    }
+
+
+def _read_transcription(filename: str, content: bytes) -> str:
+    extension = os.path.splitext(filename.lower())[1]
+    if extension == ".txt":
+        return content.decode("utf-8-sig")
+
+    if extension == ".vtt":
+        lines = content.decode("utf-8-sig").splitlines()
+        return "\n".join(
+            line.strip()
+            for line in lines
+            if line.strip()
+            and line.strip() != "WEBVTT"
+            and "-->" not in line
+            and not line.strip().isdigit()
+        )
+
+    try:
+        with zipfile.ZipFile(BytesIO(content)) as document:
+            xml_content = document.read("word/document.xml")
+        root = ElementTree.fromstring(xml_content)
+    except (KeyError, zipfile.BadZipFile, ElementTree.ParseError) as error:
+        raise HTTPException(
+            status_code=422,
+            detail="O arquivo DOCX não pôde ser lido."
+        ) from error
+
+    namespace = "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}"
+    paragraphs = []
+    for paragraph in root.iter(f"{namespace}p"):
+        text = "".join(
+            node.text or "" for node in paragraph.iter(f"{namespace}t")
+        ).strip()
+        if text:
+            paragraphs.append(text)
+    return "\n".join(paragraphs)
+
+
+def _validate_insights(raw_content: str) -> dict:
+    try:
+        insights = json.loads(raw_content)
+    except json.JSONDecodeError as error:
+        raise HTTPException(
+            status_code=502,
+            detail="A IA retornou uma análise em formato inválido."
+        ) from error
+
+    if not isinstance(insights, dict):
+        raise HTTPException(
+            status_code=502,
+            detail="A IA retornou uma análise em formato inválido."
+        )
+
+    sentiment = insights.get("sentiment")
+    if sentiment not in {"POSITIVE", "NEUTRAL", "NEGATIVE"}:
+        raise HTTPException(
+            status_code=502,
+            detail="A IA retornou um sentimento inválido."
+        )
+
+    required_strings = ("summary", "overallTone")
+    required_lists = ("keyTopics", "keyDecisions", "actionItems")
+    if (
+        any(not isinstance(insights.get(field), str) for field in required_strings)
+        or any(not isinstance(insights.get(field), list) for field in required_lists)
+        or any(not isinstance(item, dict) for item in insights["actionItems"])
+    ):
+        raise HTTPException(
+            status_code=502,
+            detail="A IA retornou campos de análise inválidos."
+        )
+
+    insights["actionItems"] = [
+        {
+            "id": str(item.get("id") or index + 1),
+            "task": str(item.get("task") or ""),
+            **({"assignee": item["assignee"]} if item.get("assignee") else {}),
+            **({"deadline": item["deadline"]} if item.get("deadline") else {}),
+        }
+        for index, item in enumerate(insights["actionItems"])
+    ]
+    return insights
+
+
+# =========================================================
+# DADOS DO FRONTEND
+# =========================================================
+
+@app.get("/companies")
+def listar_empresas():
+    try:
+        result = supabase.table("companies").select("*").execute()
+        return [_normalize_company(row) for row in result.data]
+    except HTTPException:
+        raise
+    except Exception as error:
+        print("ERRO ao listar empresas:", error)
+        raise HTTPException(
+            status_code=500,
+            detail="Não foi possível carregar as empresas."
+        ) from error
+
+
+@app.get("/companies/{company_id}")
+def obter_empresa(company_id: int):
+    try:
+        result = (
+            supabase.table("companies")
+            .select("*")
+            .eq("id", company_id)
+            .limit(1)
+            .execute()
+        )
+        if not result.data:
+            raise HTTPException(status_code=404, detail="Empresa não encontrada.")
+        return _normalize_company(result.data[0])
+    except HTTPException:
+        raise
+    except Exception as error:
+        print("ERRO ao buscar empresa:", error)
+        raise HTTPException(
+            status_code=500,
+            detail="Não foi possível carregar a empresa."
+        ) from error
+
+
+@app.get("/news")
+def listar_noticias():
+    try:
+        result = (
+            supabase.table("news")
+            .select("*")
+            .order("published_at", desc=True)
+            .execute()
+        )
+        return [_normalize_news(row) for row in result.data]
+    except Exception as error:
+        print("ERRO ao listar notícias:", error)
+        raise HTTPException(
+            status_code=500,
+            detail="Não foi possível carregar as notícias."
+        ) from error
+
+
+@app.get("/news/{news_id}")
+def obter_noticia(news_id: int):
+    try:
+        result = (
+            supabase.table("news")
+            .select("*")
+            .eq("id", news_id)
+            .limit(1)
+            .execute()
+        )
+        if not result.data:
+            raise HTTPException(status_code=404, detail="Notícia não encontrada.")
+        return _normalize_news(result.data[0])
+    except HTTPException:
+        raise
+    except Exception as error:
+        print("ERRO ao buscar notícia:", error)
+        raise HTTPException(
+            status_code=500,
+            detail="Não foi possível carregar a notícia."
+        ) from error
+
+
 # =========================================================
 # PROCESSAMENTO DE IA
 # =========================================================
+
+@app.post("/transcriptions/analyze")
+async def analisar_transcricao(
+    companyId: int = Form(...),
+    participants: str = Form(...),
+    file: UploadFile = File(...),
+):
+    filename = file.filename or ""
+    extension = os.path.splitext(filename.lower())[1]
+    if extension not in SUPPORTED_EXTENSIONS:
+        raise HTTPException(
+            status_code=400,
+            detail="Envie um arquivo DOCX, VTT ou TXT."
+        )
+
+    content = await file.read(MAX_UPLOAD_SIZE + 1)
+    if not content:
+        raise HTTPException(status_code=400, detail="Arquivo vazio.")
+    if len(content) > MAX_UPLOAD_SIZE:
+        raise HTTPException(
+            status_code=413,
+            detail="O arquivo deve ter no máximo 50 MiB."
+        )
+
+    try:
+        participant_list = json.loads(participants)
+    except json.JSONDecodeError as error:
+        raise HTTPException(
+            status_code=400,
+            detail="participants deve ser um array JSON de nomes."
+        ) from error
+    if (
+        not isinstance(participant_list, list)
+        or any(not isinstance(name, str) for name in participant_list)
+    ):
+        raise HTTPException(
+            status_code=400,
+            detail="participants deve ser um array JSON de nomes."
+        )
+
+    try:
+        company = (
+            supabase.table("companies")
+            .select("id, name")
+            .eq("id", companyId)
+            .limit(1)
+            .execute()
+        )
+        if not company.data:
+            raise HTTPException(status_code=404, detail="Empresa não encontrada.")
+
+        transcription = _read_transcription(filename, content)
+        if not transcription.strip():
+            raise HTTPException(
+                status_code=422,
+                detail="O arquivo não contém texto para análise."
+            )
+
+        prompt = f"""
+Analise a transcrição de uma reunião para o sistema TOTVS SmartCall.
+Responda somente com um objeto JSON válido, sem bloco Markdown, usando
+exatamente estas propriedades:
+summary (string), sentiment (POSITIVE, NEUTRAL ou NEGATIVE),
+overallTone (string), keyTopics (array de strings),
+keyDecisions (array de strings) e actionItems (array de objetos com
+id, task e, quando identificáveis, assignee e deadline).
+Não invente informações ausentes; use arrays vazios quando necessário.
+
+Empresa: {company.data[0]["name"]}
+Participantes: {json.dumps(participant_list, ensure_ascii=False)}
+Transcrição:
+{transcription[:30000]}
+"""
+        completion = groq_client.chat.completions.create(
+            model="openai/gpt-oss-20b",
+            messages=[{"role": "user", "content": prompt}],
+        )
+        raw_result = completion.choices[0].message.content
+        if not raw_result:
+            raise HTTPException(
+                status_code=502,
+                detail="A IA não retornou uma análise."
+            )
+        insights = _validate_insights(raw_result)
+        return {
+            "success": True,
+            "message": "Transcrição processada com sucesso!",
+            "insights": insights,
+        }
+    except HTTPException:
+        raise
+    except Exception as error:
+        print("ERRO ao analisar transcrição:", error)
+        raise HTTPException(
+            status_code=500,
+            detail="Erro durante a análise da transcrição."
+        ) from error
+
 
 @app.post("/api/processar")
 async def processar_arquivo(
