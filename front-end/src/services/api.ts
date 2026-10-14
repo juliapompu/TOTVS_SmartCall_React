@@ -16,10 +16,14 @@ export async function apiRequest<T>(
   { method = 'GET', body }: ApiRequestOptions = {},
 ): Promise<T> {
   try {
-    const response = usesMockApi
-      ? await loadInMemoryTransport().then((transport) =>
-          transport.request(path, method, body))
-      : await fetchApi(path, method, body);
+    const isAnalyze = method === 'POST' && path === '/transcriptions/analyze';
+    
+    const response =
+      isAnalyze
+        ? await fetchApi(path, method, body)
+        : await loadInMemoryTransport().then((transport) =>
+            transport.request(path, method, body),
+          );
 
     if (response.status < 200 || response.status >= 300) {
       throw createApiError(response.status, response.body);
