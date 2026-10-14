@@ -9,7 +9,7 @@ export const defaultHeaders = {
   Accept: 'application/json',
 };
 
-const usesMockApi = import.meta.env.VITE_USE_MOCK_API !== 'false';
+
 
 export async function apiRequest<T>(
   path: string,
