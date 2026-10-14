@@ -313,6 +313,7 @@ async def analisar_transcricao(
     participants: str = Form(...),
     file: UploadFile = File(...),
 ):
+    
     filename = file.filename or ""
     extension = os.path.splitext(filename.lower())[1]
     if extension not in SUPPORTED_EXTENSIONS:
@@ -390,6 +391,19 @@ Transcrição:
                 detail="A IA não retornou uma análise."
             )
         insights = _validate_insights(raw_result)
+
+        # Salvar reunião no banco
+        titulo = filename.replace(".txt", "").replace(".docx", "").replace(".vtt", "")
+
+        supabase.table("meetings").insert({
+            "company_id": companyId,
+            "title": titulo,
+            "date_time": datetime.now(timezone.utc).isoformat(),
+            "participants": participant_list,
+            "transcription": transcription,
+            "insights": insights
+        }).execute()
+
         return {
             "success": True,
             "message": "Transcrição processada com sucesso!",
@@ -403,6 +417,8 @@ Transcrição:
             status_code=500,
             detail="Erro durante a análise da transcrição."
         ) from error
+
+       
 
 
 @app.post("/api/processar")
@@ -608,4 +624,6 @@ def listar_processamentos():
         desc=True
     ).execute()
 
+
+    
     return resultado.data
